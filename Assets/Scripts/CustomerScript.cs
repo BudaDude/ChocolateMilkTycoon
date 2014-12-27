@@ -20,7 +20,8 @@ public class CustomerScript : MonoBehaviour {
     //Emotions
     int happiness = 0;
     public int maxPriceWilling;
-
+    public int cocoaDesired;
+    public int sugarDesired;
 
     float xStandOffset;
 
@@ -43,14 +44,25 @@ public class CustomerScript : MonoBehaviour {
         spawnPoint = Random.Range(0,2);
         transform.position = new Vector2(waypoints[spawnPoint].transform.position.x,yPosition);
         waypointNumber = 2;
-
-        speed = Random.Range(0, 1.0f)+1;
+        SetPersonality();
+        
 
         //layer is equal to y postion, good for overlaping
         
         
         xStandOffset = waypoints[3].transform.position.x + Random.Range(-0.5f, 0.5f);
 	}
+
+    void SetPersonality()
+    {
+        int temp= GameManager.instance.temperature;
+        Debug.Log(temp);
+        speed = Random.Range(0, 1.0f) + 1;
+        sugarDesired= Mathf.RoundToInt((temp/10));
+        cocoaDesired = 10 - Mathf.RoundToInt((temp / 10)); 
+
+
+    }
 
     private bool DecideToBuy()
     {
@@ -103,12 +115,29 @@ public class CustomerScript : MonoBehaviour {
         }
     }
 
+    void Feelings()
+    {
+        float cocoaRatio = GameManager.instance.cocoaAmt / cocoaDesired;
+        float sugarRatio = GameManager.instance.sugarAmt / sugarDesired;
+
+        if (sugarRatio > 0.75)
+        {
+            happiness += 1;
+        }
+        else if(sugarRatio < 0.5)
+        {
+            happiness -= 1;
+        }
+
+    }
+
      public IEnumerator BuyMilk()
     {
         yield return new WaitForSeconds(2);
         if (GameManager.instance.canMakeMilk() == true)
         {
             GameManager.instance.CustomerBuy();
+            Feelings();
         }
         yield return new WaitForSeconds(.5f);
         Debug.Log("YUM");

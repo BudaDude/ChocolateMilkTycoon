@@ -42,7 +42,8 @@ public class GameManager : MonoBehaviour {
     public float tickTimer;
 
 
-    //Line
+    //Weather Stuff
+    public int temperature=60;
 
 
     //Singleton crap
@@ -85,7 +86,11 @@ public class GameManager : MonoBehaviour {
         {
             hour += 1;
             minute = 0;
-            Debug.Log(GetTime());
+            //check if you can still sell stuff
+            if (!canMakeMilk())
+            {
+                EndDay();
+            }
         }
     }
 
