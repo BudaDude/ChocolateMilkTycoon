@@ -174,8 +174,7 @@ public class GameManager : MonoBehaviour {
 
         UIManager.instance.OpenMessageBox("End of Day " + day, "Money Earned: " + moneyEarned,UIManager.instance.OpenCloseRecipeMenu);
         
-        hour = 6;
-        minute=30;
+
     }
 
     public bool canMakeMilk()

@@ -138,6 +138,7 @@ public class UIManager : MonoBehaviour {
         if (recipeMenu.activeSelf == true)
         {
             GameManager.instance.paused = true;
+            timeDisplay.text = "Day "+ GameManager.instance.day;
         }
 
 	}
