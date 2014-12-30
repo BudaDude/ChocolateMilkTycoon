@@ -7,9 +7,9 @@ public class GameManager : MonoBehaviour {
     public float salePrice;
 
 
-    public int weatherTemp;
-    public int sales;
-    public float moneyEarned;
+
+    private int sales;
+    private float moneyEarned;
 
     public int inventory;
 
@@ -168,6 +168,7 @@ public class GameManager : MonoBehaviour {
             day += 1;
             endOfDay = false;
             moneyEarned = 0;
+            sales = 0;
         }
         else
         {
@@ -201,7 +202,12 @@ public class GameManager : MonoBehaviour {
         cocoaInventory -= cocoaAmt;
         sugarInventory -= sugarAmt;
         milkInventory -= 1;
+        sales += 1;
 
+    }
+    public void PauseGame()
+    {
+        UIManager.instance.OpenMessageBox("PAUSED", "Hit ok to coutinue" + moneyEarned, null);
     }
 
 

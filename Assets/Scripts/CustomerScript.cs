@@ -120,11 +120,11 @@ public class CustomerScript : MonoBehaviour {
         float cocoaRatio = GameManager.instance.cocoaAmt / cocoaDesired;
         float sugarRatio = GameManager.instance.sugarAmt / sugarDesired;
 
-        if (sugarRatio > 0.75)
+        if (sugarRatio > 0.75f && sugarRatio < 1.25f)
         {
             happiness += 1;
         }
-        else if(sugarRatio < 0.5)
+        else
         {
             happiness -= 1;
         }
@@ -159,7 +159,7 @@ public class CustomerScript : MonoBehaviour {
         if (walkingBy == true && GameManager.instance.paused==false)
         {
             float distance = Vector2.Distance(transform.position, target);
-            if (decidedToBuy == true) { Debug.Log("idk bro"); }
+            
             transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
             if (distance < 0.3)
             {
