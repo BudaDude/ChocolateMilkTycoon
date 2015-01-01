@@ -47,7 +47,7 @@ public class CustomerScript : MonoBehaviour {
         SetPersonality();
         
 
-        //layer is equal to y postion, good for overlaping
+        
         
         
         xStandOffset = waypoints[3].transform.position.x + Random.Range(-0.5f, 0.5f);
@@ -117,17 +117,27 @@ public class CustomerScript : MonoBehaviour {
 
     void Feelings()
     {
-        float cocoaRatio = GameManager.instance.cocoaAmt / cocoaDesired;
-        float sugarRatio = GameManager.instance.sugarAmt / sugarDesired;
+        float cocoa = GameManager.instance.cocoaAmt;
+        float sugar = GameManager.instance.sugarAmt;
 
-        if (sugarRatio > 0.75f && sugarRatio < 1.25f)
-        {
-            happiness += 1;
-        }
-        else
-        {
-            happiness -= 1;
-        }
+        if (sugar == sugarDesired) {
+						happiness += 2;
+				} else if (sugar == sugarDesired - 1 || sugar == sugarDesired + 1) { //Check if amount is close and rewards the player
+						happiness += 1;
+				} else if (sugar < sugarDesired - 5 || sugarDesired > sugarDesired + 5) {
+			happiness-=1;
+				}
+
+		if (cocoa ==cocoaDesired)
+		{
+			happiness += 2;
+		}
+		else if(cocoa==cocoaDesired-1 || cocoa ==cocoaDesired+1)//Check if amount is close and rewards the player
+		{
+			happiness += 1;
+		} else if (cocoa < cocoaDesired - 5 || cocoa > cocoaDesired+ 5) {
+			happiness-=1;
+		}
 
     }
 
@@ -147,7 +157,10 @@ public class CustomerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		//layer is equal to y postion, good for overlaping
         gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = -Mathf.RoundToInt(transform.position.y * 10);
+
+
         if (waypointNumber != 3)
         {
             target = new Vector2(waypoints[waypointNumber].transform.position.x, yPosition);
