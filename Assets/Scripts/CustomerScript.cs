@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 
 public class CustomerScript : MonoBehaviour {
-    public float speed;
+    private float speed;
     private bool walkingBy=true;
     public float yPosition;
    
@@ -63,7 +63,7 @@ public class CustomerScript : MonoBehaviour {
     {
         int temp= GameManager.instance.temperature;
         Debug.Log(temp);
-        speed = Random.Range(0, 1.0f) + 1;
+        speed = Random.Range(0, 1.0f)+1.5f;
         sugarDesired= Mathf.RoundToInt((temp/10));
         cocoaDesired = 10 - Mathf.RoundToInt((temp / 10)); 
 
@@ -111,7 +111,7 @@ public class CustomerScript : MonoBehaviour {
 
     void EvaluateDecision()
     {
-        if (decidedToBuy == true)
+        if (decidedToBuy == true && GameManager.instance.nearEndOfDay==false)
         {
             waypointNumber = 3;
         }

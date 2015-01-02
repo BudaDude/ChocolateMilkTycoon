@@ -9,7 +9,11 @@ public class GameManager : MonoBehaviour {
 
 
     private int sales;
+
+
+	//stats stuff
     private float moneyEarned;
+	private float moneySpent;
 
     public int inventory;
 
@@ -98,6 +102,7 @@ public class GameManager : MonoBehaviour {
 
     public string GetTime()
     {
+		//TODO Fix time display
         if (hour > 12)
         {
             if (minute < 10)
@@ -131,8 +136,9 @@ public class GameManager : MonoBehaviour {
     {
         if (money >= milkPrice)
         {
-            milkInventory += 10;
+            milkInventory += 25;
             money -= milkPrice;
+			moneySpent+=milkPrice;
 
         }
     }
@@ -140,16 +146,18 @@ public class GameManager : MonoBehaviour {
     {
         if (money >= sugarPrice)
         {
-            sugarInventory += 10;
+            sugarInventory += 25;
             money -= sugarPrice;
+			moneySpent+=sugarPrice;
         }
     }
     public void BuyCocoa()
     {
         if (money >= cocoaPrice)
         {
-            cocoaInventory += 10;
+            cocoaInventory += 25;
             money -= cocoaPrice;
+			moneySpent+=cocoaPrice;
         }
     }
 
@@ -164,13 +172,10 @@ public class GameManager : MonoBehaviour {
         if (milkInventory >= 0 && cocoaInventory >= cocoaAmt && sugarInventory >= sugarAmt)
         {
             UIManager.instance.OpenCloseRecipeMenu();
-            hour = 10;
-            minute = 0;
-            paused = false;
-            day += 1;
-            endOfDay = false;
-            moneyEarned = 0;
-            sales = 0;
+			paused=false;
+
+
+
         }
         else
         {
@@ -180,7 +185,10 @@ public class GameManager : MonoBehaviour {
     public void EndDay()
     {
 
-        UIManager.instance.OpenMessageBox("End of Day " + day, "Money Earned: " + moneyEarned,UIManager.instance.OpenCloseRecipeMenu);
+        UIManager.instance.OpenMessageBox("End of Day " + day, "Money Earned: " + moneyEarned+
+		                                  "\nMoney Spent: "+moneySpent+
+		                                  "\nTotal Earned: "+(moneyEarned-moneySpent)
+		                                  ,PrepareForDay);
 
 		//Resets positions of all customers
 		foreach (CustomerScript customer in (CustomerScript[])GameObject.FindObjectsOfType<CustomerScript>()) {
@@ -189,6 +197,18 @@ public class GameManager : MonoBehaviour {
         
 
     }
+	void PrepareForDay(){
+		hour = 10;
+		minute = 0;
+		day += 1;
+		endOfDay = false;
+		nearEndOfDay = false;
+		moneyEarned = 0;
+		moneySpent = 0;
+		sales = 0;
+		UIManager.instance.OpenCloseRecipeMenu();
+
+	}
 
     public bool canMakeMilk()
     {
@@ -235,6 +255,7 @@ public class GameManager : MonoBehaviour {
             {
 
                 EndDay();
+					endOfDay=true;
             }
             if (hour >= 16)
             {
