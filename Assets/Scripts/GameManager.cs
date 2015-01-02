@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour {
     public int cocoaAmt;
     public int sugarAmt;
 
+
+	public bool nearEndOfDay;
     public bool endOfDay=false;
 	public bool paused=true;
 
@@ -179,6 +181,11 @@ public class GameManager : MonoBehaviour {
     {
 
         UIManager.instance.OpenMessageBox("End of Day " + day, "Money Earned: " + moneyEarned,UIManager.instance.OpenCloseRecipeMenu);
+
+		//Resets positions of all customers
+		foreach (CustomerScript customer in (CustomerScript[])GameObject.FindObjectsOfType<CustomerScript>()) {
+			customer.EndDay();
+				}
         
 
     }
@@ -231,7 +238,7 @@ public class GameManager : MonoBehaviour {
             }
             if (hour >= 16)
             {
-                endOfDay = true;
+                nearEndOfDay = true;
             }
 
 

@@ -36,6 +36,7 @@ public class CustomerScript : MonoBehaviour {
 
         walkingBy = true;
         decidedToBuy = false;
+		happiness = 0;
 
         maxPriceWilling = Random.Range(4, 10);
 
@@ -52,6 +53,11 @@ public class CustomerScript : MonoBehaviour {
         
         xStandOffset = waypoints[3].transform.position.x + Random.Range(-0.5f, 0.5f);
 	}
+
+	public void EndDay(){
+		GameManager.instance.popularity += happiness;
+		Start ();
+		}
 
     void SetPersonality()
     {
@@ -180,20 +186,24 @@ public class CustomerScript : MonoBehaviour {
                     case 0:
                         if (GetExit() == 0)
                         {
-                            if (GameManager.instance.endOfDay == false)
+                            if (GameManager.instance.nearEndOfDay == false)
                             {
                                 Start();
-                            }
+                            }else{
+							EndDay();
+						}
                         }
 
                         break;
                     case 1:
                         if (GetExit() == 1)
                         {
-                            if (GameManager.instance.endOfDay == false)
+                            if (GameManager.instance.nearEndOfDay == false)
                             {
                                 Start();
-                            }
+                            }else{
+							EndDay();
+						}
                         }
                         break;
                     case 2:
