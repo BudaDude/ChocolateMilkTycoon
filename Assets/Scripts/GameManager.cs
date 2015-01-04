@@ -48,6 +48,10 @@ public class GameManager : MonoBehaviour {
     public float tickTimer;
 
 
+	//feats
+	public bool milkGoesBad;
+
+
     //Weather Stuff
     public int temperature=60;
 
@@ -184,6 +188,10 @@ public class GameManager : MonoBehaviour {
 		}
     public void EndDay()
     {
+		//Milk goes bad and must be thrown out unless you have fridge
+		if (milkGoesBad) {
+			milkInventory=0;
+				}
 
         UIManager.instance.OpenMessageBox("End of Day " + day, "Money Earned: " + moneyEarned+
 		                                  "\nMoney Spent: "+moneySpent+
