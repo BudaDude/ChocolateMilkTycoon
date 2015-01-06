@@ -8,6 +8,7 @@ public class MarketManager : MonoBehaviour {
 
 	public void BuyFridge(){
 
+
 		}
 	// Use this for initialization
 	void Start () {

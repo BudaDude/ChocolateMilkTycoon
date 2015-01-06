@@ -7,6 +7,8 @@ public class CustomerScript : MonoBehaviour {
     private float speed;
     private bool walkingBy=true;
     public float yPosition;
+
+	private Animator anim;
    
 	//
     public int waypointNumber = 0;
@@ -29,34 +31,51 @@ public class CustomerScript : MonoBehaviour {
     {
         waypoints.AddRange(GameObject.FindGameObjectsWithTag("Waypoint"));
         waypoints.Reverse();
+
+
     }
 
 	// Use this for initialization
 	void Start () {
 
-        walkingBy = true;
-        decidedToBuy = false;
+		anim = gameObject.GetComponentInChildren<Animator> ();
+		ResetSelf ();
+	}
+	private void ResetSelf(){
+		walkingBy = true;
+		decidedToBuy = false;
 		happiness = 0;
 
-        maxPriceWilling = Random.Range(4, 10);
+		
+		maxPriceWilling = Random.Range(4, 11);
+		
+		yPosition = -Random.Range(1.1f, 2f);
+		
+		spawnPoint = Random.Range(0,2);
 
-        yPosition = -Random.Range(1.1f, 2f);
-        
-        spawnPoint = Random.Range(0,2);
-        transform.position = new Vector2(waypoints[spawnPoint].transform.position.x,yPosition);
-        waypointNumber = 2;
-        SetPersonality();
-        
+		
+		transform.position = new Vector2(waypoints[spawnPoint].transform.position.x,yPosition);
 
-        
-        
-        
-        xStandOffset = waypoints[3].transform.position.x + Random.Range(-0.5f, 0.5f);
-	}
+		//Rotates the image to face the correct direction
+		if (spawnPoint == 0) {
+			transform.localEulerAngles = new Vector3(0,0,0);
+			
+			
+		} else if (spawnPoint == 1) {
+			transform.localEulerAngles = new Vector3(0,180,0);
+			
+		}
+		
+		waypointNumber = 2;
+		SetPersonality();
+
+		xStandOffset = waypoints[3].transform.position.x + Random.Range(-0.5f, 0.5f);
+		}
+
 
 	public void EndDay(){
 		GameManager.instance.popularity += happiness;
-		Start ();
+		ResetSelf ();
 		}
 
     void SetPersonality()
@@ -95,11 +114,13 @@ public class CustomerScript : MonoBehaviour {
         //walk away toward
         if (spawnPoint == 0) 
         {
-            return 1;
+			return 1; 
+
            
         }else if (spawnPoint == 1)
         {
             return 0;
+
         }
         else
         {
@@ -155,7 +176,8 @@ public class CustomerScript : MonoBehaviour {
             GameManager.instance.CustomerBuy();
             Feelings();
         }
-        yield return new WaitForSeconds(.5f);
+		anim.SetTrigger("Drinking");
+        yield return new WaitForSeconds(0.75f);
         Debug.Log("YUM");
         waypointNumber = GetExit();
         walkingBy = true;
@@ -163,6 +185,7 @@ public class CustomerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		anim.SetBool ("Walking", walkingBy && !GameManager.instance.paused);
 		//layer is equal to y postion, good for overlaping
         gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = -Mathf.RoundToInt(transform.position.y * 10);
 
@@ -177,6 +200,7 @@ public class CustomerScript : MonoBehaviour {
         }
         if (walkingBy == true && GameManager.instance.paused==false)
         {
+
             float distance = Vector2.Distance(transform.position, target);
             
             transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
@@ -188,7 +212,7 @@ public class CustomerScript : MonoBehaviour {
                         {
                             if (GameManager.instance.nearEndOfDay == false)
                             {
-                                Start();
+							ResetSelf();
                             }else{
 							EndDay();
 						}
@@ -200,7 +224,7 @@ public class CustomerScript : MonoBehaviour {
                         {
                             if (GameManager.instance.nearEndOfDay == false)
                             {
-                                Start();
+							ResetSelf();
                             }else{
 							EndDay();
 						}
@@ -217,6 +241,7 @@ public class CustomerScript : MonoBehaviour {
                         break;
                 }
             }
+
             
         }
 
