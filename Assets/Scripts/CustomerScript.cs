@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 
 public class CustomerScript : MonoBehaviour {
-    private float speed;
+    public float speed;
     private bool walkingBy=true;
     public float yPosition;
 
@@ -82,7 +82,7 @@ public class CustomerScript : MonoBehaviour {
     {
         int temp= GameManager.instance.temperature;
         Debug.Log(temp);
-        speed = Random.Range(0, 1.0f)+1.5f;
+        
         sugarDesired= Mathf.RoundToInt((temp/10));
         cocoaDesired = 10 - Mathf.RoundToInt((temp / 10)); 
 
@@ -170,7 +170,7 @@ public class CustomerScript : MonoBehaviour {
 
      public IEnumerator BuyMilk()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         if (GameManager.instance.canMakeMilk() == true)
         {
             GameManager.instance.CustomerBuy();
