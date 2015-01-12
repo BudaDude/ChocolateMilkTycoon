@@ -51,6 +51,9 @@ public class GameManager : MonoBehaviour {
 	//feats
 	public bool milkGoesBad;
 
+    //Upgrades
+    public int maxMilkSaved;
+
 
     //Weather Stuff
     public int temperature=60;
@@ -173,7 +176,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void StartDay(){
-        if (milkInventory >= 0 && cocoaInventory >= cocoaAmt && sugarInventory >= sugarAmt)
+        if (milkInventory > 0 && cocoaInventory >= cocoaAmt && sugarInventory >= sugarAmt)
         {
             UIManager.instance.OpenCloseRecipeMenu();
 			paused=false;
@@ -183,14 +186,25 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
-            UIManager.instance.OpenMessageBox("WARNING", "You don't have enough items to start the day with the current recipe!",null);
+            if (money > cocoaPrice || money > sugarPrice || money > milkPrice)
+            {
+                UIManager.instance.OpenMessageBox("WARNING", "You don't have enough items to start the day with the current recipe!", null);
+            }
+            else
+            {
+                UIManager.instance.OpenMessageBox("GAME OVER", "You don't have enough money to buy supplies to coutinue. It's time to pack up and go home.",()=> Application.LoadLevel(0));
+            }
         }
 		}
     public void EndDay()
     {
 		//Milk goes bad and must be thrown out unless you have fridge
 		if (milkGoesBad) {
-			milkInventory=0;
+            if (milkInventory > maxMilkSaved)
+            {
+                milkInventory = maxMilkSaved;
+            }
+			
 				}
 
         UIManager.instance.OpenMessageBox("End of Day " + day, "Money Earned: " + moneyEarned+

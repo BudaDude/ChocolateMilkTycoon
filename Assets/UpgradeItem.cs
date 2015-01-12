@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
+using System;
 
 public class UpgradeItem : MonoBehaviour {
 
@@ -9,20 +9,22 @@ public class UpgradeItem : MonoBehaviour {
     public string itemDesc;
     public float itemCost;
     public Sprite itemIcon;
+    public bool stackable;
+    public int amount;
+
+    public Action purchaseAction;
+
     private Text displayName;
     private Button button;
 
-    private bool purchased;
 
+    public bool purchased=false;
+
+   
     private MarketManager mManager;
     private Image itemImage;
 
-    public UpgradeItem(string newName, string newDesc, float newCost)
-    {
-        itemName = newName;
-        itemDesc = newDesc;
-        itemCost = newCost;
-    }
+
 
 	// Use this for initialization
 	void Start () {

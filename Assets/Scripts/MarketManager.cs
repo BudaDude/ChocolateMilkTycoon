@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -12,9 +13,12 @@ public class MarketManager : MonoBehaviour
     public Text displayDesc;
     public Text displayCost;
     public Image displayImage;
+    public Button purchaseButton;
 
     public UpgradeItem upgradeItemSlot;
     public GameObject parentObject;
+
+    public GameObject upgradeObject;
 
     public UpgradeItem selected;
 
@@ -26,26 +30,40 @@ public class MarketManager : MonoBehaviour
 		}
 	// Use this for initialization
 	void Start () {
-        NewItem("Small Freezer", "This fridge is your basic 2 bedroom apartment fridge. We had to remove the compressor to cut costs but it keeps your milk cold with the power hopes and dreams", 700);
-        NewItem("Large Fridge", "This isn't your grandma's fridge. This fridge runs on pure liquid nitrogen. It can fit up 5 human bodies. Not that we recommend that!", 1500);
+        NewItem("Small Fridge",
+            "Preserves 10 milk at the end of the day",
+            700,false,()=>GameManager.instance.maxMilkSaved=10);
+        NewItem("Midsize Fridge", "Preserves 25 milk at the end of the day ", 1500,false,()=>GameManager.instance.maxMilkSaved=25);
 
-        NewItem("Cow", "Butt", 5200);
-        NewItem("Cocoa Plant", "Butt", 500);
-        NewItem("Mixer", "Butt", 3500);
-        NewItem("Null", "Butt", 1500);
-        NewItem("None", "Butt", 22500);
+        //NewItem("Cow", "Butt", 5200);
+        //NewItem("Cocoa Plant", "Butt", 500);
+
 
         selected = upgradeItems[0];
 
         
 	}
 
-    public void NewItem(string name, string desc, float cost)
+    public void OpenCloseUpgradeMenu()
+    {
+        if (upgradeObject.activeSelf == true)
+        {
+            upgradeObject.SetActive(false);
+        }
+        else
+        {
+            upgradeObject.SetActive(true);
+        }
+    }
+
+    public void NewItem(string name, string desc, float cost,bool stacking,Action purchaseAction)
     {
         UpgradeItem itemScript = (UpgradeItem)Instantiate(upgradeItemSlot);
         itemScript.itemName = name;
         itemScript.itemDesc = desc;
         itemScript.itemCost = cost;
+        itemScript.stackable = stacking;
+        itemScript.purchaseAction = purchaseAction;
         itemScript.transform.SetParent(parentObject.transform);
         upgradeItems.Add(itemScript);
     }
@@ -54,6 +72,27 @@ public class MarketManager : MonoBehaviour
     {
         selected = item;
     }
+
+    public void Purchase()
+    {
+        if (GameManager.instance.money >= selected.itemCost)
+        {
+            selected.purchased = true;
+            GameManager.instance.money -= selected.itemCost;
+            selected.purchaseAction();
+
+            if (selected.stackable == false)
+            {
+                purchaseButton.interactable = false;
+            }
+        }
+        else
+        {
+            UIManager.instance.OpenMessageBox("Not Enough Money!", "You don't have enough money to purchase this upgrade.", null);
+        }
+    }
+
+
 	
 	// Update is called once per frame
 	void Update () {
