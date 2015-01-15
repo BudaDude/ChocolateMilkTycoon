@@ -172,7 +172,7 @@ public class GameManager : MonoBehaviour {
     
     
 	void Start () {
-        
+        temperature = Random.Range(0, 99);
 	}
 
 	public void StartDay(){

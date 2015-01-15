@@ -44,15 +44,18 @@ public class CustomerScript : MonoBehaviour {
 
 		anim = gameObject.GetComponentInChildren<Animator> ();
         emotionImage = gameObject.GetComponentInChildren<Image>();
+        
 		ResetSelf ();
 	}
 	private void ResetSelf(){
+        GameManager.instance.popularity += happiness;
+
 		walkingBy = true;
 		decidedToBuy = false;
 		happiness = 0;
         emotionImage.sprite = null;
 
-		
+        emotionImage.gameObject.SetActive(false);
 		maxPriceWilling = Random.Range(4, 11);
 		
 		yPosition = -Random.Range(1.1f, 2f);
@@ -80,7 +83,6 @@ public class CustomerScript : MonoBehaviour {
 
 
 	public void EndDay(){
-		GameManager.instance.popularity += happiness;
 		ResetSelf ();
 		}
 
@@ -99,7 +101,7 @@ public class CustomerScript : MonoBehaviour {
     {
         if (GameManager.instance.canMakeMilk())
         {
-            if (GameManager.instance.salePrice <= maxPriceWilling)
+            if (Random.Range(0,GameManager.instance.popularity) > GameManager.instance.popularity/3)
             {
                 return true;
             }
@@ -187,16 +189,33 @@ public class CustomerScript : MonoBehaviour {
 
 		}
 
-        DisplayFeelings();
+        
         
 
     }
 
     void DisplayFeelings()
     {
+        emotionImage.gameObject.SetActive(true);
+
         if (happiness >= 3)
         {
             emotionImage.sprite = Resources.Load<Sprite>("Emotions/love");
+        }
+        else if (happiness == 1 | happiness == 2)
+        {
+            emotionImage.sprite = Resources.Load<Sprite>("Emotions/happy");
+
+        }
+        else if (happiness == 0)
+        {
+            emotionImage.sprite = Resources.Load<Sprite>("Emotions/okay");
+
+        }
+        else if (happiness < 0)
+        {
+            emotionImage.sprite = Resources.Load<Sprite>("Emotions/sad");
+
         }
     }
 
@@ -210,7 +229,8 @@ public class CustomerScript : MonoBehaviour {
         }
 		anim.SetTrigger("Drinking");
         yield return new WaitForSeconds(0.75f);
-        Debug.Log("YUM");
+        DisplayFeelings();
+       
         waypointNumber = GetExit();
         walkingBy = true;
     }

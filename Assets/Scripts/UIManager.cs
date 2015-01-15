@@ -91,63 +91,62 @@ public class UIManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Cocoa and sugar slider
-        if (cocoaAmtSlider != null && sugarAmtSlider != null)
+        if (GameManager.instance != null)
         {
-            GameManager.instance.cocoaAmt=(int)Mathf.Round(cocoaAmtSlider.value);
-            cocoaDisplay.text= cocoaAmtSlider.value.ToString();
-            GameManager.instance.sugarAmt = (int)Mathf.Round(sugarAmtSlider.value);
+            if (cocoaAmtSlider != null && sugarAmtSlider != null)
+            {
+                GameManager.instance.cocoaAmt = (int)Mathf.Round(cocoaAmtSlider.value);
+                cocoaDisplay.text = cocoaAmtSlider.value.ToString();
+                GameManager.instance.sugarAmt = (int)Mathf.Round(sugarAmtSlider.value);
 
-            sugarDisplay.text= sugarAmtSlider.value.ToString();
+                sugarDisplay.text = sugarAmtSlider.value.ToString();
+
+            }
+
+            if (moneyDisplay != null)
+            {
+                moneyDisplay.text = " $ " + GameManager.instance.money;
+            }
+
+            if (milkInventoryDisplay != null && cocoaInventoryDisplay != null && sugarInventoryDisplay)
+            {
+                milkInventoryDisplay.text = GameManager.instance.milkInventory.ToString();
+                cocoaInventoryDisplay.text = GameManager.instance.cocoaInventory.ToString();
+                sugarInventoryDisplay.text = GameManager.instance.sugarInventory.ToString();
+
+            }
+            if (milkPriceDisplay != null && cocoaPriceDisplay != null && sugarPriceDisplay != null)
+            {
+                milkPriceDisplay.text = "$" + GameManager.instance.milkPrice;
+                sugarPriceDisplay.text = "$" + GameManager.instance.sugarPrice;
+                cocoaPriceDisplay.text = "$" + GameManager.instance.cocoaPrice;
+
+            }
+
+            if (inventoryDisplay != null)
+            {
+                inventoryDisplay.text = "S: " + GameManager.instance.sugarInventory + " C: " + GameManager.instance.cocoaInventory + " M: " + GameManager.instance.milkInventory;
+            }
+
+            if (timeDisplay != null)
+            {
+                timeDisplay.text = GameManager.instance.GetTime();
+            }
+            if (tempDisplay != null)
+            {
+
+                tempDisplay.text = GameManager.instance.temperature + "°F";
+            }
+
+            if (priceDisplay != null && priceSlider != null)
+            {
+                GameManager.instance.salePrice = priceSlider.value;
+                priceDisplay.text = "Price: S" + priceSlider.value;
+            }
+
+
 
         }
-
-        if (moneyDisplay != null)
-        {
-            moneyDisplay.text = " $ "+ GameManager.instance.money;        }
-
-        if (milkInventoryDisplay != null && cocoaInventoryDisplay != null && sugarInventoryDisplay)
-        {
-            milkInventoryDisplay.text = "Milk: "+GameManager.instance.milkInventory;
-            cocoaInventoryDisplay.text = "Cocoa Powder: " + GameManager.instance.cocoaInventory;
-            sugarInventoryDisplay.text = "Sugar: " + GameManager.instance.sugarInventory;
-
-        }
-        if (milkPriceDisplay != null && cocoaPriceDisplay != null && sugarPriceDisplay != null)
-        {
-            milkPriceDisplay.text = "$" + GameManager.instance.milkPrice;
-            sugarPriceDisplay.text = "$" + GameManager.instance.sugarPrice;
-            cocoaPriceDisplay.text = "$" + GameManager.instance.cocoaPrice;
-
-        }
-
-        if (inventoryDisplay != null)
-        {
-            inventoryDisplay.text = "S: " + GameManager.instance.sugarInventory + " C: " + GameManager.instance.cocoaInventory + " M: " + GameManager.instance.milkInventory;
-        }
-
-        if (timeDisplay != null)
-        {
-            timeDisplay.text = GameManager.instance.GetTime();
-        }
-        if (tempDisplay != null)
-        {
-            
-            tempDisplay.text = GameManager.instance.temperature + "°F";
-        }
-
-        if (priceDisplay != null && priceSlider != null)
-        {
-            GameManager.instance.salePrice = priceSlider.value;
-            priceDisplay.text = "Price: S" + priceSlider.value;
-        }
-
-
-        if (recipeMenu.activeSelf == true)
-        {
-            GameManager.instance.paused = true;
-            timeDisplay.text = "Day "+ GameManager.instance.day;
-        }
-
 	}
 
     public void OpenCloseRecipeMenu()
