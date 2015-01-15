@@ -81,10 +81,9 @@ public class MarketManager : MonoBehaviour
             GameManager.instance.money -= selected.itemCost;
             selected.purchaseAction();
 
-            if (selected.stackable == false)
-            {
-                purchaseButton.interactable = false;
-            }
+
+            selected.purchased = true;
+
         }
         else
         {
@@ -105,6 +104,15 @@ public class MarketManager : MonoBehaviour
             displayDesc.text = selected.itemDesc;
             displayCost.text = "Cost: "+selected.itemCost;
             displayImage.sprite = selected.itemIcon;
+            if (selected.purchased == true)
+            {
+                purchaseButton.interactable = false;
+            }
+            else
+            {
+                purchaseButton.interactable = true;
+
+            }
             
         }
 

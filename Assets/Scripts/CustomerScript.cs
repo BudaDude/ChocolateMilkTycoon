@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 
 public class CustomerScript : MonoBehaviour {
@@ -24,6 +25,7 @@ public class CustomerScript : MonoBehaviour {
     public int maxPriceWilling;
     public int cocoaDesired;
     public int sugarDesired;
+    public Image emotionImage;
 
     float xStandOffset;
 
@@ -32,6 +34,8 @@ public class CustomerScript : MonoBehaviour {
         waypoints.AddRange(GameObject.FindGameObjectsWithTag("Waypoint"));
         waypoints.Reverse();
 
+        
+
 
     }
 
@@ -39,12 +43,14 @@ public class CustomerScript : MonoBehaviour {
 	void Start () {
 
 		anim = gameObject.GetComponentInChildren<Animator> ();
+        emotionImage = gameObject.GetComponentInChildren<Image>();
 		ResetSelf ();
 	}
 	private void ResetSelf(){
 		walkingBy = true;
 		decidedToBuy = false;
 		happiness = 0;
+        emotionImage.sprite = null;
 
 		
 		maxPriceWilling = Random.Range(4, 11);
@@ -147,25 +153,51 @@ public class CustomerScript : MonoBehaviour {
         float cocoa = GameManager.instance.cocoaAmt;
         float sugar = GameManager.instance.sugarAmt;
 
-        if (sugar == sugarDesired) {
-						happiness += 2;
-				} else if (sugar == sugarDesired - 1 || sugar == sugarDesired + 1) { //Check if amount is close and rewards the player
-						happiness += 1;
-				} else if (sugar < sugarDesired - 5 || sugarDesired > sugarDesired + 5) {
-			happiness-=1;
-				}
+        if (sugar == sugarDesired)
+        {
+            happiness += 2;
+            
+        }
+        else if (sugar == (sugarDesired - 1) || sugar == (sugarDesired + 1))
+        { //Check if amount is close and rewards the player
+            happiness += 1;
+           
 
-		if (cocoa ==cocoaDesired)
+        }
+        else if (sugar <= (sugarDesired - 5) || sugarDesired >= (sugarDesired + 5))
+        {
+            happiness -= 1;
+            
+        }
+
+		if (cocoa == cocoaDesired)
 		{
 			happiness += 2;
+            
+
 		}
-		else if(cocoa==cocoaDesired-1 || cocoa ==cocoaDesired+1)//Check if amount is close and rewards the player
+		else if(cocoa==(cocoaDesired-1) || cocoa == (cocoaDesired+1))//Check if amount is close and rewards the player
 		{
 			happiness += 1;
-		} else if (cocoa < cocoaDesired - 5 || cocoa > cocoaDesired+ 5) {
+            
+
+		} else if (cocoa <= (cocoaDesired - 5) || cocoa >= (cocoaDesired+ 5)) {
 			happiness-=1;
+            
+
 		}
 
+        DisplayFeelings();
+        
+
+    }
+
+    void DisplayFeelings()
+    {
+        if (happiness >= 3)
+        {
+            emotionImage.sprite = Resources.Load<Sprite>("Emotions/love");
+        }
     }
 
      public IEnumerator BuyMilk()

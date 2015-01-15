@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour {
     //info bar
 	public Text moneyDisplay;
     public Text timeDisplay;
+    public Text tempDisplay;
 
     public Text milkInventoryDisplay;
     public Text milkPriceDisplay;
@@ -94,7 +95,7 @@ public class UIManager : MonoBehaviour {
         {
             GameManager.instance.cocoaAmt=(int)Mathf.Round(cocoaAmtSlider.value);
             cocoaDisplay.text= cocoaAmtSlider.value.ToString();
-            GameManager.instance.sugarAmt = (int)Mathf.Round(cocoaAmtSlider.value);
+            GameManager.instance.sugarAmt = (int)Mathf.Round(sugarAmtSlider.value);
 
             sugarDisplay.text= sugarAmtSlider.value.ToString();
 
@@ -128,6 +129,12 @@ public class UIManager : MonoBehaviour {
         {
             timeDisplay.text = GameManager.instance.GetTime();
         }
+        if (tempDisplay != null)
+        {
+            
+            tempDisplay.text = GameManager.instance.temperature + "°F";
+        }
+
         if (priceDisplay != null && priceSlider != null)
         {
             GameManager.instance.salePrice = priceSlider.value;

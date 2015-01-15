@@ -180,6 +180,7 @@ public class GameManager : MonoBehaviour {
         {
             UIManager.instance.OpenCloseRecipeMenu();
 			paused=false;
+            
 
 
 
@@ -229,6 +230,7 @@ public class GameManager : MonoBehaviour {
 		moneySpent = 0;
 		sales = 0;
 		UIManager.instance.OpenCloseRecipeMenu();
+        ChangeTemp();
 
 	}
 
@@ -241,6 +243,23 @@ public class GameManager : MonoBehaviour {
         else
         {
             return false;
+        }
+    }
+    void ChangeTemp()
+    {
+        if (temperature < 10)
+        {
+            temperature += Random.Range(0, 9);
+        }
+        else if (temperature > 90)
+        {
+            temperature -= Random.Range(0, 9);
+
+        }
+        else
+        {
+            temperature += Random.Range(-9, 9);
+
         }
     }
 
