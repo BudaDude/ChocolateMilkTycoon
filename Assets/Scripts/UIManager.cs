@@ -140,8 +140,12 @@ public class UIManager : MonoBehaviour {
 
             if (priceDisplay != null && priceSlider != null)
             {
-                GameManager.instance.salePrice = priceSlider.value;
-                priceDisplay.text = "Price: S" + priceSlider.value;
+                GameManager.instance.salePrice = priceSlider.value*0.25f;
+
+                   
+                priceDisplay.text = "Price: " +  (priceSlider.value * 0.25f).ToString("C2");
+
+                
             }
 
 
