@@ -1,24 +1,23 @@
 fileFormatVersion: 2
-guid: a4c7c1d01cd0c47d7b61bdc61f92bc2a
+guid: 53985789c91524dfab1b9619c51afee3
 TextureImporter:
   fileIDToRecycleName:
-    21300000: customerlayouts
-    21300002: customerlayouts_0
-    21300004: customerlayouts_1
-    21300006: customerlayouts_2
-    21300008: customerlayouts_3
-    21300010: customerlayouts_4
-    21300012: customerlayouts_5
-    21300014: customerlayouts_6
-    21300016: customerlayouts_7
-    21300018: customerlayouts_8
-    21300020: customerlayouts_9
-    21300022: customerlayouts_10
-    21300024: customerlayouts_11
+    21300000: customer3_0
+    21300002: customer3_1
+    21300004: customer3_2
+    21300006: customer3_3
+    21300008: customer3_4
+    21300010: customer3_5
+    21300012: customer3_6
+    21300014: customer3_7
+    21300016: customer3_8
+    21300018: customer3_9
+    21300020: customer3_10
+    21300022: customer3_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -38,7 +37,7 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: 0
-    aniso: 1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -53,10 +52,14 @@ TextureImporter:
   spritePixelsToUnits: 16
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings: []
+  buildTargetSettings:
+  - buildTarget: Android
+    maxTextureSize: 1024
+    textureFormat: -3
+    compressionQuality: 50
   spriteSheet:
     sprites:
-    - name: customerlayouts_0
+    - name: customer3_0
       rect:
         serializedVersion: 2
         x: 0
@@ -66,7 +69,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customerlayouts_1
+    - name: customer3_1
       rect:
         serializedVersion: 2
         x: 16
@@ -76,7 +79,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customerlayouts_2
+    - name: customer3_2
       rect:
         serializedVersion: 2
         x: 32
@@ -86,7 +89,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customerlayouts_3
+    - name: customer3_3
       rect:
         serializedVersion: 2
         x: 48
@@ -96,7 +99,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customerlayouts_4
+    - name: customer3_4
       rect:
         serializedVersion: 2
         x: 0
@@ -106,7 +109,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customerlayouts_5
+    - name: customer3_5
       rect:
         serializedVersion: 2
         x: 16
@@ -116,7 +119,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customerlayouts_6
+    - name: customer3_6
       rect:
         serializedVersion: 2
         x: 32
@@ -126,7 +129,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customerlayouts_7
+    - name: customer3_7
       rect:
         serializedVersion: 2
         x: 48
@@ -136,7 +139,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customerlayouts_8
+    - name: customer3_8
       rect:
         serializedVersion: 2
         x: 0
@@ -146,7 +149,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customerlayouts_9
+    - name: customer3_9
       rect:
         serializedVersion: 2
         x: 16
@@ -156,7 +159,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customerlayouts_10
+    - name: customer3_10
       rect:
         serializedVersion: 2
         x: 32
@@ -166,7 +169,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customerlayouts_11
+    - name: customer3_11
       rect:
         serializedVersion: 2
         x: 48
