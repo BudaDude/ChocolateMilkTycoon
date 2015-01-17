@@ -44,60 +44,35 @@ public class UIManager : MonoBehaviour {
 
 
 
-
+	private GameManager gameManager;
 
 
     //Singleton crap
-    private static UIManager _instance;
-    public static UIManager instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = GameObject.FindObjectOfType<UIManager>();
 
-                DontDestroyOnLoad(_instance.gameObject);
-            }
-            return _instance;
-        }
-    }
 
     void Awake()
     {
-        //More Singleton crap
-        if (_instance == null)
-        {
-            _instance = this;
-            DontDestroyOnLoad(this);
-        }
-        else
-        {
-            if (this != _instance)
-            {
-                Destroy(this.gameObject);
-            }
-        }
+
     }
 
     
 
 	// Use this for initialization
 	void Start () {
-
+		gameManager = gameObject.GetComponent<GameManager> ();
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
         //Cocoa and sugar slider
-        if (GameManager.instance != null)
+        if (gameManager != null)
         {
             if (cocoaAmtSlider != null && sugarAmtSlider != null)
             {
-                GameManager.instance.cocoaAmt = (int)Mathf.Round(cocoaAmtSlider.value);
+                gameManager.cocoaAmt = (int)Mathf.Round(cocoaAmtSlider.value);
                 cocoaDisplay.text = cocoaAmtSlider.value.ToString();
-                GameManager.instance.sugarAmt = (int)Mathf.Round(sugarAmtSlider.value);
+                gameManager.sugarAmt = (int)Mathf.Round(sugarAmtSlider.value);
 
                 sugarDisplay.text = sugarAmtSlider.value.ToString();
 
@@ -105,42 +80,42 @@ public class UIManager : MonoBehaviour {
 
             if (moneyDisplay != null)
             {
-                moneyDisplay.text =GameManager.instance.money.ToString("C2");
+                moneyDisplay.text =gameManager.money.ToString("C2");
             }
 
             if (milkInventoryDisplay != null && cocoaInventoryDisplay != null && sugarInventoryDisplay)
             {
-                milkInventoryDisplay.text = GameManager.instance.milkInventory.ToString();
-                cocoaInventoryDisplay.text = GameManager.instance.cocoaInventory.ToString();
-                sugarInventoryDisplay.text = GameManager.instance.sugarInventory.ToString();
+                milkInventoryDisplay.text = gameManager.milkInventory.ToString();
+                cocoaInventoryDisplay.text = gameManager.cocoaInventory.ToString();
+                sugarInventoryDisplay.text = gameManager.sugarInventory.ToString();
 
             }
             if (milkPriceDisplay != null && cocoaPriceDisplay != null && sugarPriceDisplay != null)
             {
-                milkPriceDisplay.text = "$" + GameManager.instance.milkPrice;
-                sugarPriceDisplay.text = "$" + GameManager.instance.sugarPrice;
-                cocoaPriceDisplay.text = "$" + GameManager.instance.cocoaPrice;
+                milkPriceDisplay.text = "$" + gameManager.milkPrice;
+                sugarPriceDisplay.text = "$" + gameManager.sugarPrice;
+                cocoaPriceDisplay.text = "$" + gameManager.cocoaPrice;
 
             }
 
             if (inventoryDisplay != null)
             {
-                inventoryDisplay.text = "S: " + GameManager.instance.sugarInventory + " C: " + GameManager.instance.cocoaInventory + " M: " + GameManager.instance.milkInventory;
+                inventoryDisplay.text = "S: " + gameManager.sugarInventory + " C: " + gameManager.cocoaInventory + " M: " + gameManager.milkInventory;
             }
 
             if (timeDisplay != null)
             {
-                timeDisplay.text = GameManager.instance.GetTime();
+                timeDisplay.text = gameManager.GetTime();
             }
             if (tempDisplay != null)
             {
 
-                tempDisplay.text = GameManager.instance.temperature + "F";
+                tempDisplay.text = gameManager.temperature + "F";
             }
 
             if (priceDisplay != null && priceSlider != null)
             {
-                GameManager.instance.salePrice = priceSlider.value*0.25f;
+                gameManager.salePrice = priceSlider.value*0.25f;
 
                    
                 priceDisplay.text = "Price: " +  (priceSlider.value * 0.25f).ToString("C2");
@@ -171,7 +146,7 @@ public class UIManager : MonoBehaviour {
         messageBox.SetActive(true);
         messageBoxTitle.text = title;
         messageBoxText.text = text;
-        GameManager.instance.paused = true;
+       gameManager.paused = true;
         if (clickAction != null)
         {
             messageBoxButton.onClick.AddListener(()=>clickAction());
@@ -193,7 +168,7 @@ public class UIManager : MonoBehaviour {
         messageBox.SetActive(false);
         if (recipeMenu.activeSelf == false)
         {
-            GameManager.instance.paused = false;
+            gameManager.paused = false;
         }
 
 

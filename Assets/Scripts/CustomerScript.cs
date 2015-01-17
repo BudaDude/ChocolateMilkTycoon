@@ -29,11 +29,14 @@ public class CustomerScript : MonoBehaviour {
 
     float xStandOffset;
 
+	private GameManager gameManager;
+
     void Awake()
     {
         waypoints.AddRange(GameObject.FindGameObjectsWithTag("Waypoint"));
         waypoints.Reverse();
 
+		gameManager = GameObject.FindObjectOfType<GameManager> ().GetComponent<GameManager> ();
         
 
 
@@ -48,7 +51,7 @@ public class CustomerScript : MonoBehaviour {
 		ResetSelf ();
 	}
 	private void ResetSelf(){
-        GameManager.instance.popularity += happiness;
+        gameManager.popularity += happiness;
 
 		walkingBy = true;
 		decidedToBuy = false;
@@ -88,7 +91,7 @@ public class CustomerScript : MonoBehaviour {
 
     void SetPersonality()
     {
-        int temp= GameManager.instance.temperature;
+        int temp= gameManager.temperature;
         Debug.Log(temp);
         
         sugarDesired= Mathf.RoundToInt((temp/10));
@@ -99,9 +102,9 @@ public class CustomerScript : MonoBehaviour {
 
     private bool DecideToBuy()
     {
-        if (GameManager.instance.canMakeMilk())
+        if (gameManager.canMakeMilk())
         {
-            if (Random.Range(0,GameManager.instance.popularity) > GameManager.instance.popularity/3)
+            if (Random.Range(0,gameManager.popularity) > gameManager.popularity/3)
             {
                 return true;
             }
@@ -140,7 +143,7 @@ public class CustomerScript : MonoBehaviour {
 
     void EvaluateDecision()
     {
-        if (decidedToBuy == true && GameManager.instance.nearEndOfDay==false)
+        if (decidedToBuy == true && gameManager.nearEndOfDay==false)
         {
             waypointNumber = 3;
         }
@@ -152,8 +155,8 @@ public class CustomerScript : MonoBehaviour {
 
     void Feelings()
     {
-        float cocoa = GameManager.instance.cocoaAmt;
-        float sugar = GameManager.instance.sugarAmt;
+        float cocoa = gameManager.cocoaAmt;
+        float sugar = gameManager.sugarAmt;
 
         if (sugar == sugarDesired)
         {
@@ -222,9 +225,9 @@ public class CustomerScript : MonoBehaviour {
      public IEnumerator BuyMilk()
     {
         yield return new WaitForSeconds(1);
-        if (GameManager.instance.canMakeMilk() == true)
+        if (gameManager.canMakeMilk() == true)
         {
-            GameManager.instance.CustomerBuy();
+            gameManager.CustomerBuy();
             Feelings();
         }
 		anim.SetTrigger("Drinking");
@@ -237,7 +240,7 @@ public class CustomerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		anim.SetBool ("Walking", walkingBy && !GameManager.instance.paused);
+		anim.SetBool ("Walking", walkingBy && !gameManager.paused);
 		//layer is equal to y postion, good for overlaping
         gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = -Mathf.RoundToInt(transform.position.y * 10);
 
@@ -250,7 +253,7 @@ public class CustomerScript : MonoBehaviour {
         {
           target   = new Vector2(xStandOffset,waypoints[waypointNumber].transform.position.y);
         }
-        if (walkingBy == true && GameManager.instance.paused==false)
+        if (walkingBy == true && gameManager.paused==false)
         {
 
             float distance = Vector2.Distance(transform.position, target);
@@ -262,7 +265,7 @@ public class CustomerScript : MonoBehaviour {
                     case 0:
                         if (GetExit() == 0)
                         {
-                            if (GameManager.instance.nearEndOfDay == false)
+                            if (gameManager.nearEndOfDay == false)
                             {
 							ResetSelf();
                             }else{
@@ -274,7 +277,7 @@ public class CustomerScript : MonoBehaviour {
                     case 1:
                         if (GetExit() == 1)
                         {
-                            if (GameManager.instance.nearEndOfDay == false)
+                            if (gameManager.nearEndOfDay == false)
                             {
 							ResetSelf();
                             }else{

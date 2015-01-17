@@ -24,16 +24,21 @@ public class MarketManager : MonoBehaviour
 
     public List<UpgradeItem> upgradeItems;
 
-	public void BuyFridge(){
 
 
+	private GameManager gameManager;
+	private UIManager uiManager;
+
+void Awake(){
+		gameManager = GameObject.FindObjectOfType<GameManager> ().GetComponent<GameManager> ();
+		uiManager = GameObject.FindObjectOfType<UIManager> ().GetComponent<UIManager> ();
 		}
 	// Use this for initialization
 	void Start () {
         NewItem("Small Fridge",
             "Preserves 10 milk at the end of the day",
-            200,false,()=>GameManager.instance.maxMilkSaved=10);
-        NewItem("Midsize Fridge", "Preserves 25 milk at the end of the day ", 700,false,()=>GameManager.instance.maxMilkSaved=25);
+		        200,false,()=>gameManager.maxMilkSaved=10);
+		NewItem("Midsize Fridge", "Preserves 25 milk at the end of the day ", 700,false,()=>gameManager.maxMilkSaved=25);
 
         //NewItem("Cow", "Butt", 5200);
         //NewItem("Cocoa Plant", "Butt", 500);
@@ -75,10 +80,10 @@ public class MarketManager : MonoBehaviour
 
     public void Purchase()
     {
-        if (GameManager.instance.money >= selected.itemCost)
+		if (gameManager.money >= selected.itemCost)
         {
             selected.purchased = true;
-            GameManager.instance.money -= selected.itemCost;
+			gameManager.money -= selected.itemCost;
             selected.purchaseAction();
 
 
@@ -87,7 +92,7 @@ public class MarketManager : MonoBehaviour
         }
         else
         {
-            UIManager.instance.OpenMessageBox("Not Enough Money!", "You don't have enough money to purchase this upgrade.", null);
+            uiManager.OpenMessageBox("Not Enough Money!", "You don't have enough money to purchase this upgrade.", null);
         }
     }
 

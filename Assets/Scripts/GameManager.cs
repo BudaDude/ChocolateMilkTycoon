@@ -60,37 +60,18 @@ public class GameManager : MonoBehaviour {
 
 
     //Singleton crap
-    private static GameManager _instance;
-    public static GameManager instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = GameObject.FindObjectOfType<GameManager>();
 
-                DontDestroyOnLoad(_instance.gameObject);
-            }
-            return _instance;
-        }
-    }
+	private UIManager uiManager;
+
 
     void Awake()
     {
-        //More Singleton crap
-        if (_instance == null)
-        {
-            _instance = this;
-            DontDestroyOnLoad(this);
-        }
-        else
-        {
-            if (this != _instance)
-            {
-                Destroy(this.gameObject);
-            }
-        }
+
     }
+	void Start () {
+		temperature = Random.Range(0, 99);
+		uiManager = gameObject.GetComponent<UIManager> ();
+	}
 
     void TimeCycle()
     {
@@ -171,14 +152,12 @@ public class GameManager : MonoBehaviour {
     
     
     
-	void Start () {
-        temperature = Random.Range(0, 99);
-	}
+
 
 	public void StartDay(){
         if (milkInventory > 0 && cocoaInventory >= cocoaAmt && sugarInventory >= sugarAmt)
         {
-            UIManager.instance.OpenCloseRecipeMenu();
+            uiManager.OpenCloseRecipeMenu();
 			paused=false;
             
 
@@ -189,11 +168,11 @@ public class GameManager : MonoBehaviour {
         {
             if (money > cocoaPrice || money > sugarPrice || money > milkPrice)
             {
-                UIManager.instance.OpenMessageBox("WARNING", "You don't have enough items to start the day with the current recipe!", null);
+                uiManager.OpenMessageBox("WARNING", "You don't have enough items to start the day with the current recipe!", null);
             }
             else
             {
-                UIManager.instance.OpenMessageBox("GAME OVER", "You don't have enough money to buy supplies to coutinue. It's time to pack up and go home.",()=> Application.LoadLevel(0));
+                uiManager.OpenMessageBox("GAME OVER", "You don't have enough money to buy supplies to coutinue. It's time to pack up and go home.",()=> Application.LoadLevel(0));
             }
         }
 		}
@@ -208,7 +187,7 @@ public class GameManager : MonoBehaviour {
 			
 				}
 
-        UIManager.instance.OpenMessageBox("End of Day " + day, "Money Earned: " + moneyEarned.ToString("C2")+
+        uiManager.OpenMessageBox("End of Day " + day, "Money Earned: " + moneyEarned.ToString("C2")+
 		                                  "\nMoney Spent: "+moneySpent.ToString("C2")+
 		                                  "\nTotal Earned: "+(moneyEarned-moneySpent).ToString("C2")
 		                                  ,PrepareForDay);
@@ -229,7 +208,7 @@ public class GameManager : MonoBehaviour {
 		moneyEarned = 0;
 		moneySpent = 0;
 		sales = 0;
-		UIManager.instance.OpenCloseRecipeMenu();
+		uiManager.OpenCloseRecipeMenu();
         ChangeTemp();
 
 	}
@@ -275,7 +254,7 @@ public class GameManager : MonoBehaviour {
     }
     public void PauseGame()
     {
-        UIManager.instance.OpenMessageBox("PAUSED", "Hit ok to coutinue", null);
+        uiManager.OpenMessageBox("PAUSED", "Hit ok to coutinue", null);
     }
 
 
