@@ -208,9 +208,9 @@ public class GameManager : MonoBehaviour {
 			
 				}
 
-        UIManager.instance.OpenMessageBox("End of Day " + day, "Money Earned: " + moneyEarned+
-		                                  "\nMoney Spent: "+moneySpent+
-		                                  "\nTotal Earned: "+(moneyEarned-moneySpent)
+        UIManager.instance.OpenMessageBox("End of Day " + day, "Money Earned: " + moneyEarned.ToString("C2")+
+		                                  "\nMoney Spent: "+moneySpent.ToString("C2")+
+		                                  "\nTotal Earned: "+(moneyEarned-moneySpent).ToString("C2")
 		                                  ,PrepareForDay);
 
 		//Resets positions of all customers
@@ -275,7 +275,7 @@ public class GameManager : MonoBehaviour {
     }
     public void PauseGame()
     {
-        UIManager.instance.OpenMessageBox("PAUSED", "Hit ok to coutinue" + moneyEarned, null);
+        UIManager.instance.OpenMessageBox("PAUSED", "Hit ok to coutinue", null);
     }
 
 
