@@ -32,8 +32,8 @@ public class MarketManager : MonoBehaviour
 	void Start () {
         NewItem("Small Fridge",
             "Preserves 10 milk at the end of the day",
-            700,false,()=>GameManager.instance.maxMilkSaved=10);
-        NewItem("Midsize Fridge", "Preserves 25 milk at the end of the day ", 1500,false,()=>GameManager.instance.maxMilkSaved=25);
+            200,false,()=>GameManager.instance.maxMilkSaved=10);
+        NewItem("Midsize Fridge", "Preserves 25 milk at the end of the day ", 700,false,()=>GameManager.instance.maxMilkSaved=25);
 
         //NewItem("Cow", "Butt", 5200);
         //NewItem("Cocoa Plant", "Butt", 500);
@@ -102,7 +102,7 @@ public class MarketManager : MonoBehaviour
         {
             displayName.text = selected.itemName;
             displayDesc.text = selected.itemDesc;
-            displayCost.text = "Cost: "+selected.itemCost;
+            displayCost.text = "Cost: "+selected.itemCost.ToString("C2");
             displayImage.sprite = selected.itemIcon;
             if (selected.purchased == true)
             {

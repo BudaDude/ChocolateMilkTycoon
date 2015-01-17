@@ -105,7 +105,7 @@ public class UIManager : MonoBehaviour {
 
             if (moneyDisplay != null)
             {
-                moneyDisplay.text = " $ " + GameManager.instance.money;
+                moneyDisplay.text =GameManager.instance.money.ToString("C2");
             }
 
             if (milkInventoryDisplay != null && cocoaInventoryDisplay != null && sugarInventoryDisplay)
@@ -135,7 +135,7 @@ public class UIManager : MonoBehaviour {
             if (tempDisplay != null)
             {
 
-                tempDisplay.text = GameManager.instance.temperature + "°F";
+                tempDisplay.text = GameManager.instance.temperature + "F";
             }
 
             if (priceDisplay != null && priceSlider != null)
@@ -201,11 +201,11 @@ public class UIManager : MonoBehaviour {
 
     public void OpenCloseInGameBox()
     {
-        if(inGameBoxAnim.GetBool("Open")==true){
-            inGameBoxAnim.SetBool("Open",false);
+        if(inGameBoxAnim.GetBool("isHidden")==true){
+            inGameBoxAnim.SetBool("isHidden",false);
 
         }else{
-            inGameBoxAnim.SetBool("Open",true);
+            inGameBoxAnim.SetBool("isHidden",true);
 
         }
     }
