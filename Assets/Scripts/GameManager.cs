@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour {
     public float timeMult=2;
     public int day=1;
 
+    public int startingHour;
+
     //recipe stuff
     public int cocoaAmt;
     public int sugarAmt;
@@ -57,6 +59,7 @@ public class GameManager : MonoBehaviour {
 
     //Weather Stuff
     public int temperature=60;
+
 
 
     //Singleton crap
@@ -124,7 +127,7 @@ public class GameManager : MonoBehaviour {
     {
         if (money >= milkPrice)
         {
-            milkInventory += 25;
+            milkInventory += 10;
             money -= milkPrice;
 			moneySpent+=milkPrice;
 
@@ -134,7 +137,7 @@ public class GameManager : MonoBehaviour {
     {
         if (money >= sugarPrice)
         {
-            sugarInventory += 25;
+            sugarInventory += 50;
             money -= sugarPrice;
 			moneySpent+=sugarPrice;
         }
@@ -143,7 +146,7 @@ public class GameManager : MonoBehaviour {
     {
         if (money >= cocoaPrice)
         {
-            cocoaInventory += 25;
+            cocoaInventory += 50;
             money -= cocoaPrice;
 			moneySpent+=cocoaPrice;
         }
@@ -187,9 +190,9 @@ public class GameManager : MonoBehaviour {
 			
 				}
 
-        uiManager.OpenMessageBox("End of Day " + day, "Money Earned: " + moneyEarned.ToString("C2")+
-		                                  "\nMoney Spent: "+moneySpent.ToString("C2")+
-		                                  "\nTotal Earned: "+(moneyEarned-moneySpent).ToString("C2")
+        uiManager.OpenMessageBox("End of Day " + day, "Money Earned: \t\t" + moneyEarned.ToString("C2")+
+		                                  "\n\nMoney Spent: \t\t"+moneySpent.ToString("C2")+
+		                                  "\n\nTotal Earned: \t\t"+(moneyEarned-moneySpent).ToString("C2")
 		                                  ,PrepareForDay);
 
 		//Resets positions of all customers
@@ -200,7 +203,7 @@ public class GameManager : MonoBehaviour {
 
     }
 	void PrepareForDay(){
-		hour = 10;
+		hour = startingHour;
 		minute = 0;
 		day += 1;
 		endOfDay = false;

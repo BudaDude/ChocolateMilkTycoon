@@ -162,7 +162,7 @@ public class CustomerScript : MonoBehaviour {
 
         if (sugar == sugarDesired)
         {
-            happiness += 2;
+            happiness += 3;
             
         }
         else if (sugar == (sugarDesired - 1) || sugar == (sugarDesired + 1))
@@ -179,7 +179,7 @@ public class CustomerScript : MonoBehaviour {
 
 		if (cocoa == cocoaDesired)
 		{
-			happiness += 2;
+			happiness += 3;
             
 
 		}

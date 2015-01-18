@@ -106,9 +106,9 @@ public class UIManager : MonoBehaviour {
 
             if (centerDisplay != null)
             {
-                if (recipeMenu.activeSelf)
+                if (recipeMenu.activeSelf==true)
                 {
-                    centerDisplay.text = "Day "+gameManager.day+"- Prep";
+                    centerDisplay.text = "Day "+gameManager.day+" - Prep";
                 }
                 else
                 {
