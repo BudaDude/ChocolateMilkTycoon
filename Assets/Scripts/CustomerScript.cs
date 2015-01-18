@@ -9,6 +9,7 @@ public class CustomerScript : MonoBehaviour {
     private bool walkingBy=true;
     public float yPosition;
 
+    public bool deployed;
 	private Animator anim;
    
 	//
@@ -22,7 +23,7 @@ public class CustomerScript : MonoBehaviour {
 
     //Emotions
     int happiness = 0;
-    public int maxPriceWilling;
+    public float maxPriceWilling;
     public int cocoaDesired;
     public int sugarDesired;
     public Image emotionImage;
@@ -57,9 +58,10 @@ public class CustomerScript : MonoBehaviour {
 		decidedToBuy = false;
 		happiness = 0;
         emotionImage.sprite = null;
+        deployed = false;
 
         emotionImage.gameObject.SetActive(false);
-		maxPriceWilling = Random.Range(4, 11);
+		maxPriceWilling = Random.Range(1.0f, 5.25f);
 		
 		yPosition = -Random.Range(1.1f, 2f);
 		
@@ -104,7 +106,7 @@ public class CustomerScript : MonoBehaviour {
     {
         if (gameManager.canMakeMilk())
         {
-            if (Random.Range(0,gameManager.popularity) > gameManager.popularity/3)
+            if (gameManager.salePrice <= maxPriceWilling)
             {
                 return true;
             }
@@ -121,7 +123,7 @@ public class CustomerScript : MonoBehaviour {
     }
     private int GetExit()
     {
-        Debug.Log("IM PEACING OUT");
+        
         //walk away toward
         if (spawnPoint == 0) 
         {
@@ -253,7 +255,7 @@ public class CustomerScript : MonoBehaviour {
         {
           target   = new Vector2(xStandOffset,waypoints[waypointNumber].transform.position.y);
         }
-        if (walkingBy == true && gameManager.paused==false)
+        if (walkingBy == true && gameManager.paused==false && deployed==true)
         {
 
             float distance = Vector2.Distance(transform.position, target);

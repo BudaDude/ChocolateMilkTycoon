@@ -5,7 +5,7 @@ using System.Collections;
 public class UIManager : MonoBehaviour {
     //info bar
 	public Text moneyDisplay;
-    public Text timeDisplay;
+    public Text centerDisplay;
     public Text tempDisplay;
 
     public Text milkInventoryDisplay;
@@ -35,6 +35,7 @@ public class UIManager : MonoBehaviour {
     //InGameBox
     public Animator inGameBoxAnim;
     public Text inventoryDisplay;
+    public Text popDisplay;
 
     //Main Game
     public Text earnedDisplay;
@@ -103,9 +104,17 @@ public class UIManager : MonoBehaviour {
                 inventoryDisplay.text = "S: " + gameManager.sugarInventory + " C: " + gameManager.cocoaInventory + " M: " + gameManager.milkInventory;
             }
 
-            if (timeDisplay != null)
+            if (centerDisplay != null)
             {
-                timeDisplay.text = gameManager.GetTime();
+                if (recipeMenu.activeSelf)
+                {
+                    centerDisplay.text = "Day "+gameManager.day+"- Prep";
+                }
+                else
+                {
+                    centerDisplay.text = gameManager.GetTime();
+                }
+                
             }
             if (tempDisplay != null)
             {
@@ -121,6 +130,10 @@ public class UIManager : MonoBehaviour {
                 priceDisplay.text = "Price: " +  (priceSlider.value * 0.25f).ToString("C2");
 
                 
+            }
+
+            if (popDisplay != null) {
+                popDisplay.text = "Popularity: " + gameManager.popularity;
             }
 
 
