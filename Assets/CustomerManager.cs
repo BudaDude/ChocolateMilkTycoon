@@ -24,16 +24,17 @@ public class CustomerManager : MonoBehaviour {
 	void Update () {
         if (gameManager.paused == false)
         {
-            timer += Time.deltaTime+(gameManager.popularity/100);
+            timer += Time.deltaTime;
         }
-        if (timer >= waitTime)
+        if (timer >= (waitTime - (gameManager.popularity / 100)))
         {
             if (readyToDeploy.Count > 0)
             {
                 readyToDeploy[0].deployed = true;
                 readyToDeploy.RemoveAt(0);
-                timer = 0;
+                
             }
+            timer = 0;
         }
 
         foreach (CustomerScript cs in customers)

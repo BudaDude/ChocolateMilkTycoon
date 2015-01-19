@@ -37,8 +37,8 @@ void Awake(){
 	void Start () {
         NewItem("Small Fridge",
             "Preserves 10 milk at the end of the day",
-		        200,false,()=>gameManager.maxMilkSaved=10);
-		NewItem("Midsize Fridge", "Preserves 25 milk at the end of the day ", 700,false,()=>gameManager.maxMilkSaved=25);
+		        80,false,()=>gameManager.maxMilkSaved=10);
+		NewItem("Midsize Fridge", "Preserves 25 milk at the end of the day ", 200,false,()=>gameManager.maxMilkSaved=25);
 
         //NewItem("Cow", "Butt", 5200);
         //NewItem("Cocoa Plant", "Butt", 500);

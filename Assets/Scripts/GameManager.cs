@@ -87,6 +87,7 @@ public class GameManager : MonoBehaviour {
             if (!canMakeMilk())
             {
                 EndDay();
+                
             }
         }
     }
@@ -181,6 +182,14 @@ public class GameManager : MonoBehaviour {
 		}
     public void EndDay()
     {
+        
+
+        string additionalMsg = "";
+        if (!canMakeMilk())
+        {
+            additionalMsg = "You ran out of some supplies";
+        }
+
 		//Milk goes bad and must be thrown out unless you have fridge
 		if (milkGoesBad) {
             if (milkInventory > maxMilkSaved)
@@ -189,10 +198,14 @@ public class GameManager : MonoBehaviour {
             }
 			
 				}
+        
+
+
 
         uiManager.OpenMessageBox("End of Day " + day, "Money Earned: \t\t" + moneyEarned.ToString("C2")+
 		                                  "\n\nMoney Spent: \t\t"+moneySpent.ToString("C2")+
-		                                  "\n\nTotal Earned: \t\t"+(moneyEarned-moneySpent).ToString("C2")
+		                                  "\n\nTotal Earned: \t\t"+(moneyEarned-moneySpent).ToString("C2")+
+                                          "\n\n"+additionalMsg
 		                                  ,PrepareForDay);
 
 		//Resets positions of all customers

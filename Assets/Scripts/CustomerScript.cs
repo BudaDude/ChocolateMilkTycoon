@@ -62,7 +62,16 @@ public class CustomerScript : MonoBehaviour {
 
         emotionImage.gameObject.SetActive(false);
 		maxPriceWilling = Random.Range(1.0f, 5.25f);
-		
+
+        if (gameManager.popularity >= 1000)
+        {
+            maxPriceWilling += 2;
+        }
+        else if (gameManager.popularity >= 100)
+        {
+            maxPriceWilling += 1;
+        }
+
 		yPosition = -Random.Range(1.1f, 2f);
 		
 		spawnPoint = Random.Range(0,2);
@@ -94,7 +103,7 @@ public class CustomerScript : MonoBehaviour {
     void SetPersonality()
     {
         int temp= gameManager.temperature;
-        Debug.Log(temp);
+        
         
         sugarDesired= Mathf.RoundToInt((temp/10));
         cocoaDesired = 10 - Mathf.RoundToInt((temp / 10)); 

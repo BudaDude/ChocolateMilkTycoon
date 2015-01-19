@@ -162,8 +162,10 @@ public class UIManager : MonoBehaviour {
        gameManager.paused = true;
         if (clickAction != null)
         {
-            messageBoxButton.onClick.AddListener(()=>clickAction());
-            messageBoxButton.onClick.AddListener(()=>CloseMessageBox());
+            
+           
+            messageBoxButton.onClick.AddListener(() => clickAction());
+            messageBoxButton.onClick.AddListener(() => CloseMessageBox());
             Debug.Log("Opened with 2 commands");
         }
         else
