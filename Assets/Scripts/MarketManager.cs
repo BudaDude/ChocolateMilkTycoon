@@ -37,8 +37,10 @@ void Awake(){
 	void Start () {
         NewItem("Small Fridge",
             "Preserves 10 milk at the end of the day",
-		        80,false,()=>gameManager.maxMilkSaved=10);
-		NewItem("Midsize Fridge", "Preserves 25 milk at the end of the day ", 200,false,()=>gameManager.maxMilkSaved=25);
+		        80,()=>gameManager.maxMilkSaved=10);
+		NewItem("Midsize Fridge", "Preserves 25 milk at the end of the day ", 200,()=>gameManager.maxMilkSaved=25);
+
+        NewItem("Cow", "Yes this is a freakin' cow that you can own. It will produce a little milk for you everyday.", 400, () => gameManager.cow = true);
 
         //NewItem("Cow", "Butt", 5200);
         //NewItem("Cocoa Plant", "Butt", 500);
@@ -61,13 +63,13 @@ void Awake(){
         }
     }
 
-    public void NewItem(string name, string desc, float cost,bool stacking,Action purchaseAction)
+    public void NewItem(string name, string desc, float cost,Action purchaseAction)
     {
         UpgradeItem itemScript = (UpgradeItem)Instantiate(upgradeItemSlot);
         itemScript.itemName = name;
         itemScript.itemDesc = desc;
         itemScript.itemCost = cost;
-        itemScript.stackable = stacking;
+        
         itemScript.purchaseAction = purchaseAction;
         itemScript.transform.SetParent(parentObject.transform);
         upgradeItems.Add(itemScript);

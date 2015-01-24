@@ -93,9 +93,9 @@ public class UIManager : MonoBehaviour {
             }
             if (milkPriceDisplay != null && cocoaPriceDisplay != null && sugarPriceDisplay != null)
             {
-                milkPriceDisplay.text = "$" + gameManager.milkPrice;
-                sugarPriceDisplay.text = "$" + gameManager.sugarPrice;
-                cocoaPriceDisplay.text = "$" + gameManager.cocoaPrice;
+                milkPriceDisplay.text =  gameManager.milkPrice.ToString("C2");
+                sugarPriceDisplay.text = gameManager.sugarPrice.ToString("C2");
+                cocoaPriceDisplay.text = gameManager.cocoaPrice.ToString("C2");
 
             }
 

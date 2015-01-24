@@ -32,11 +32,13 @@ public class GameManager : MonoBehaviour {
 
     //Time stuff
     private int minute;
-    private int hour=6;
+    private int hour;
     public float timeMult=2;
     public int day=1;
+    public float tickTimer;
 
     public int startingHour;
+    public int endHour;
 
     //recipe stuff
     public int cocoaAmt;
@@ -47,11 +49,12 @@ public class GameManager : MonoBehaviour {
     public bool endOfDay=false;
 	public bool paused=true;
 
-    public float tickTimer;
+    
 
 
 	//feats
 	public bool milkGoesBad;
+    public bool cow = false;
 
     //Upgrades
     public int maxMilkSaved;
@@ -74,6 +77,7 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 		temperature = Random.Range(0, 99);
 		uiManager = gameObject.GetComponent<UIManager> ();
+        hour = startingHour;
 	}
 
     void TimeCycle()
@@ -120,6 +124,11 @@ public class GameManager : MonoBehaviour {
 
     }
 
+    public int GetHour()
+    {
+        return hour;
+    }
+
 
 
 
@@ -152,6 +161,8 @@ public class GameManager : MonoBehaviour {
 			moneySpent+=cocoaPrice;
         }
     }
+
+
 
     
     
@@ -198,6 +209,10 @@ public class GameManager : MonoBehaviour {
             }
 			
 				}
+        if (cow)
+        {
+            milkInventory += 10;
+        }
         
 
 
@@ -287,13 +302,13 @@ public class GameManager : MonoBehaviour {
                 tickTimer = 0;
             }
 
-            if (hour >= 17)
+            if (hour >= endHour)
             {
 
                 EndDay();
 					endOfDay=true;
             }
-            if (hour >= 16)
+            if (hour >= endHour-1)
             {
                 nearEndOfDay = true;
             }

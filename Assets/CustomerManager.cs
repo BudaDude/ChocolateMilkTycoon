@@ -13,12 +13,17 @@ public class CustomerManager : MonoBehaviour {
 
     private float timer=0;
 
+    private float additionalTime;
+
+    
+
 	// Use this for initialization
 	void Start () {
         gameManager = GameManager.FindObjectOfType<GameManager>()
             ;
         customers = GameObject.FindObjectsOfType<CustomerScript>();
 	}
+
 	
 	// Update is called once per frame
 	void Update () {

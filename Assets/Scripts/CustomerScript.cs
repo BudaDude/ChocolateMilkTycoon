@@ -81,11 +81,11 @@ public class CustomerScript : MonoBehaviour {
 
 		//Rotates the image to face the correct direction
 		if (spawnPoint == 0) {
-			transform.localEulerAngles = new Vector3(0,0,0);
+			gameObject.GetComponentInChildren<SpriteRenderer>().gameObject.transform.localEulerAngles = new Vector3(0,0,0);
 			
 			
 		} else if (spawnPoint == 1) {
-			transform.localEulerAngles = new Vector3(0,180,0);
+            gameObject.GetComponentInChildren<SpriteRenderer>().gameObject.transform.localEulerAngles = new Vector3(0, 180, 0);
 			
 		}
 		
