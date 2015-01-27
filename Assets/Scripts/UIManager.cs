@@ -48,7 +48,8 @@ public class UIManager : MonoBehaviour {
 	private GameManager gameManager;
 
 
-    //Singleton crap
+    //Settings
+    public GameObject settingsMenu;
 
 
     void Awake()
@@ -119,7 +120,7 @@ public class UIManager : MonoBehaviour {
             if (tempDisplay != null)
             {
 
-                tempDisplay.text = gameManager.temperature + "F";
+                tempDisplay.text = gameManager.GetTemp();
             }
 
             if (priceDisplay != null && priceSlider != null)
@@ -197,6 +198,19 @@ public class UIManager : MonoBehaviour {
         }else{
             inGameBoxAnim.SetBool("isHidden",true);
 
+        }
+    }
+
+
+    public void OpenCloseSettings()
+    {
+        if (settingsMenu.activeSelf == true)
+        {
+            settingsMenu.SetActive(false);
+        }
+        else
+        {
+            settingsMenu.SetActive(true);
         }
     }
 }

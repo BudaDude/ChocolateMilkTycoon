@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour {
     //Singleton crap
 
 	private UIManager uiManager;
+    private Settings settings;
 
 
     void Awake()
@@ -75,6 +76,7 @@ public class GameManager : MonoBehaviour {
 
     }
 	void Start () {
+        settings = gameObject.GetComponent<Settings>();
 		temperature = Random.Range(0, 99);
 		uiManager = gameObject.GetComponent<UIManager> ();
         hour = startingHour;
@@ -162,13 +164,6 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-
-
-    
-    
-    
-
-
 	public void StartDay(){
         if (milkInventory > 0 && cocoaInventory >= cocoaAmt && sugarInventory >= sugarAmt)
         {
@@ -244,6 +239,17 @@ public class GameManager : MonoBehaviour {
 
 	}
 
+    public string GetTemp(){
+        if (settings.celsius == true)
+        {
+            return ((temperature - 32) * 5 / 9).ToString() + " °C";
+        }
+        else
+        {
+            return temperature.ToString() + " °F";
+        }
+    }
+
     public bool canMakeMilk()
     {
         if (cocoaInventory >= cocoaAmt && sugarInventory >= sugarAmt && milkInventory != 0)
@@ -257,20 +263,10 @@ public class GameManager : MonoBehaviour {
     }
     void ChangeTemp()
     {
-        if (temperature < 10)
-        {
-            temperature += Random.Range(0, 9);
-        }
-        else if (temperature > 90)
-        {
-            temperature -= Random.Range(0, 9);
 
-        }
-        else
-        {
-            temperature += Random.Range(-9, 9);
+            temperature += Random.Range(-10, 10);
+            temperature = Mathf.Clamp(temperature, 10, 90);
 
-        }
     }
 
     public void CustomerBuy()

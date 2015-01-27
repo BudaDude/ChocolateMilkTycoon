@@ -72,7 +72,7 @@ public class CustomerScript : MonoBehaviour {
             maxPriceWilling += 1;
         }
 
-		yPosition = -Random.Range(1.1f, 2f);
+		yPosition = -Random.Range(1.3f, 1.8f);
 		
 		spawnPoint = Random.Range(0,2);
 
@@ -105,8 +105,8 @@ public class CustomerScript : MonoBehaviour {
         int temp= gameManager.temperature;
         
         
-        sugarDesired= Mathf.RoundToInt((temp/10));
-        cocoaDesired = 10 - Mathf.RoundToInt((temp / 10)); 
+        sugarDesired= Mathf.Clamp(Mathf.RoundToInt((temp/10)),1,10);
+        cocoaDesired = Mathf.Clamp((10 - Mathf.RoundToInt((temp / 10))),1,10); 
 
 
     }
