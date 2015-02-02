@@ -31,7 +31,7 @@ public class UpgradeItem : MonoBehaviour {
         displayName = gameObject.GetComponentInChildren<Text>();
         button = gameObject.GetComponent<Button>();
         mManager = GameObject.FindObjectOfType<MarketManager>();
-        itemImage = gameObject.GetComponentInChildren<Image>();
+        itemImage = transform.FindChild("Image").GetComponent<Image>();
         button.onClick.AddListener(()=>MakeSelected());
 
 

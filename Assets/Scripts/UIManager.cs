@@ -51,7 +51,8 @@ public class UIManager : MonoBehaviour {
     //Settings
     public GameObject settingsMenu;
 
-
+    //bools
+    bool recipeMenuOpened = true;
     void Awake()
     {
 
@@ -107,7 +108,7 @@ public class UIManager : MonoBehaviour {
 
             if (centerDisplay != null)
             {
-                if (recipeMenu.activeSelf==true)
+                if (recipeMenuOpened==true)
                 {
                     centerDisplay.text = "Day "+gameManager.day+" - Prep";
                 }
@@ -144,12 +145,15 @@ public class UIManager : MonoBehaviour {
 
     public void OpenCloseRecipeMenu()
     {
-        if (recipeMenu.activeSelf==true){
-            recipeMenu.SetActive(false);
+        Animator anim=recipeMenu.GetComponent<Animator>();;
+        if (anim.GetBool("Opened")==true){
+            anim.SetBool("Opened",false);
+            recipeMenuOpened = false;
         }
         else
         {
-            recipeMenu.SetActive(true);
+            anim.SetBool("Opened",true);
+            recipeMenuOpened = true;
         }
     }
 
