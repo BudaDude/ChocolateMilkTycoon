@@ -129,7 +129,7 @@ public class UIManager : MonoBehaviour {
                 gameManager.salePrice = priceSlider.value*0.25f;
 
                    
-                priceDisplay.text = "Price: " +  (priceSlider.value * 0.25f).ToString("C2");
+                priceDisplay.text =(priceSlider.value * 0.25f).ToString("C2");
 
                 
             }

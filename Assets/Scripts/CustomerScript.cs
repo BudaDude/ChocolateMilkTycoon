@@ -72,11 +72,12 @@ public class CustomerScript : MonoBehaviour {
             maxPriceWilling += 1;
         }
 
-		yPosition = -Random.Range(1.3f, 1.8f);
+		
 		
 		spawnPoint = Random.Range(0,2);
 
-		
+        yPosition = waypoints[spawnPoint].transform.position.y;
+
 		transform.position = new Vector2(waypoints[spawnPoint].transform.position.x,yPosition);
 
 		//Rotates the image to face the correct direction
