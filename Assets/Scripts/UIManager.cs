@@ -34,7 +34,9 @@ public class UIManager : MonoBehaviour {
 
     //InGameBox
     public Animator inGameBoxAnim;
-    public Text inventoryDisplay;
+	public Text milkInventoryInfo;
+	public Text cocoaInventoryInfo;
+	public Text sugarInventoryInfo;
     public Text popDisplay;
 
     //Main Game
@@ -101,10 +103,7 @@ public class UIManager : MonoBehaviour {
 
             }
 
-            if (inventoryDisplay != null)
-            {
-                inventoryDisplay.text = "S: " + gameManager.sugarInventory + " C: " + gameManager.cocoaInventory + " M: " + gameManager.milkInventory;
-            }
+
 
             if (centerDisplay != null)
             {
@@ -137,6 +136,13 @@ public class UIManager : MonoBehaviour {
             if (popDisplay != null) {
                 popDisplay.text = "Popularity: " + gameManager.popularity;
             }
+
+			if (sugarInventoryInfo !=null && cocoaInventoryInfo !=null && milkInventoryInfo !=null){
+				Debug.Log("Wht");
+				sugarInventoryInfo.text=gameManager.sugarInventory.ToString();
+				cocoaInventoryInfo.text = gameManager.cocoaInventory.ToString();
+				milkInventoryInfo.text = gameManager.milkInventory.ToString();
+			}
 
 
 
