@@ -9,6 +9,8 @@ TextureImporter:
     21300008: tilemap_3
     21300010: tilemap_4
     21300012: tilemap_5
+    21300014: tilemap_6
+    21300016: tilemap_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -91,6 +93,16 @@ TextureImporter:
     - name: tilemap_3
       rect:
         serializedVersion: 2
+        x: 48
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tilemap_4
+      rect:
+        serializedVersion: 2
         x: 0
         y: 96
         width: 16
@@ -98,7 +110,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tilemap_4
+    - name: tilemap_5
       rect:
         serializedVersion: 2
         x: 32
@@ -108,7 +120,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tilemap_5
+    - name: tilemap_6
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tilemap_7
       rect:
         serializedVersion: 2
         x: 0

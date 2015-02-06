@@ -38,6 +38,7 @@ public class UIManager : MonoBehaviour {
 	public Text cocoaInventoryInfo;
 	public Text sugarInventoryInfo;
     public Text popDisplay;
+    public Text chocoMilkInventory;
 
     //Main Game
     public Text earnedDisplay;
@@ -138,11 +139,17 @@ public class UIManager : MonoBehaviour {
             }
 
 			if (sugarInventoryInfo !=null && cocoaInventoryInfo !=null && milkInventoryInfo !=null){
-				Debug.Log("Wht");
+				
 				sugarInventoryInfo.text=gameManager.sugarInventory.ToString();
 				cocoaInventoryInfo.text = gameManager.cocoaInventory.ToString();
 				milkInventoryInfo.text = gameManager.milkInventory.ToString();
 			}
+
+            if (chocoMilkInventory != null)
+            {
+                chocoMilkInventory.text = gameManager.getChocoMilk().ToString();
+            }
+
 
 
 

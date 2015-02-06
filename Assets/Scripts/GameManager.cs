@@ -261,6 +261,11 @@ public class GameManager : MonoBehaviour {
             return false;
         }
     }
+
+    public int getChocoMilk()
+    {
+        return Mathf.Min(milkInventory, Mathf.Min(Mathf.FloorToInt(cocoaInventory/cocoaAmt),Mathf.FloorToInt(sugarInventory/sugarAmt)));
+    }
     void ChangeTemp()
     {
 
