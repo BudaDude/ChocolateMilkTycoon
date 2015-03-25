@@ -4,11 +4,10 @@ using UnityEngine.UI;
 using System;
 
 public class UpgradeItem : MonoBehaviour {
-
+   
     public string itemName;
     public string itemDesc;
     public float itemCost;
-    public Sprite itemIcon;
     public bool stackable;
     public int amount;
 
@@ -23,6 +22,7 @@ public class UpgradeItem : MonoBehaviour {
    
     private MarketManager mManager;
     private Image itemImage;
+    public Sprite itemIcon;
 
 
 

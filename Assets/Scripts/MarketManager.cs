@@ -35,12 +35,7 @@ void Awake(){
 		}
 	// Use this for initialization
 	void Start () {
-        NewItem("Small Fridge",
-            "Preserves 10 milk at the end of the day",
-		        80,()=>gameManager.maxMilkSaved=10);
-		NewItem("Midsize Fridge", "Preserves 25 milk at the end of the day ", 200,()=>gameManager.maxMilkSaved=25);
 
-        NewItem("Cow", "Yes this is a freakin' cow that you can own. It will produce a little milk for you everyday.", 400, () => gameManager.cow = true);
 
         //NewItem("Cow", "Butt", 5200);
         //NewItem("Cocoa Plant", "Butt", 500);
