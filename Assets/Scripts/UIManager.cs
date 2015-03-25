@@ -8,14 +8,14 @@ public class UIManager : MonoBehaviour {
     public Text centerDisplay;
     public Text tempDisplay;
 
-    public Text milkInventoryDisplay;
+    public Text[] milkInventoryDisplay;
     public Text milkPriceDisplay;
 
 
-    public Text sugarInventoryDisplay;
+    public Text[] sugarInventoryDisplay;
     public Text sugarPriceDisplay;
 
-    public Text cocoaInventoryDisplay;
+    public Text[] cocoaInventoryDisplay;
     public Text cocoaPriceDisplay;
     //
 
@@ -23,8 +23,8 @@ public class UIManager : MonoBehaviour {
 
     public Slider cocoaAmtSlider;
     public Slider sugarAmtSlider;
-    public Text cocoaDisplay;
-    public Text sugarDisplay;
+    public Text[] cocoaRecipeDisplay;
+    public Text[] sugarRecipeDisplay;
 
     //Message box
     public GameObject messageBox;
@@ -34,15 +34,10 @@ public class UIManager : MonoBehaviour {
 
     //InGameBox
     public Animator inGameBoxAnim;
-	public Text milkInventoryInfo;
-	public Text cocoaInventoryInfo;
-	public Text sugarInventoryInfo;
     public Text popDisplay;
-    public Text chocoMilkInventory;
 
     //Main Game
     public Text earnedDisplay;
-
     public Slider priceSlider;
     public Text priceDisplay;
 
@@ -74,14 +69,35 @@ public class UIManager : MonoBehaviour {
         //Cocoa and sugar slider
         if (gameManager != null)
         {
-            if (cocoaAmtSlider != null && sugarAmtSlider != null)
+            //
+            //Sliders
+            //
+            if (cocoaAmtSlider)
             {
                 gameManager.cocoaAmt = (int)Mathf.Round(cocoaAmtSlider.value);
-                cocoaDisplay.text = cocoaAmtSlider.value.ToString();
+            }
+            if (sugarAmtSlider)
+            {
                 gameManager.sugarAmt = (int)Mathf.Round(sugarAmtSlider.value);
+            }
 
-                sugarDisplay.text = sugarAmtSlider.value.ToString();
-
+            //
+            //Recipe Displays
+            //
+            if (cocoaRecipeDisplay.Length >0)
+            {
+                foreach (Text displayText in cocoaRecipeDisplay)
+                {
+                    displayText.text = gameManager.cocoaAmt.ToString();
+                }
+               
+            }
+            if (sugarRecipeDisplay.Length > 0)
+            {
+                foreach (Text displayText in sugarRecipeDisplay)
+                {
+                    displayText.text = gameManager.sugarAmt.ToString();
+                 }
             }
 
             if (moneyDisplay != null)
@@ -89,13 +105,35 @@ public class UIManager : MonoBehaviour {
                 moneyDisplay.text =gameManager.money.ToString("C2");
             }
 
-            if (milkInventoryDisplay != null && cocoaInventoryDisplay != null && sugarInventoryDisplay)
+            //
+            //Inventory Displays
+            //
+            if (milkInventoryDisplay.Length > 0)
             {
-                milkInventoryDisplay.text = gameManager.milkInventory.ToString();
-                cocoaInventoryDisplay.text = gameManager.cocoaInventory.ToString();
-                sugarInventoryDisplay.text = gameManager.sugarInventory.ToString();
-
+                foreach (Text displayText in milkInventoryDisplay)
+                {
+                    displayText.text = gameManager.milkInventory.ToString();
+                }
+               
+   
             }
+            if (cocoaInventoryDisplay.Length > 0)
+            {
+                foreach (Text displayText in cocoaInventoryDisplay)
+                {
+                    displayText.text = gameManager.cocoaInventory.ToString();
+                }
+            }
+            if (sugarInventoryDisplay.Length > 0)
+            {
+                foreach (Text displayText in sugarInventoryDisplay)
+                {
+                    displayText.text = gameManager.sugarInventory.ToString();
+                }
+            }
+            //
+            //Price Diplays
+            //
             if (milkPriceDisplay != null && cocoaPriceDisplay != null && sugarPriceDisplay != null)
             {
                 milkPriceDisplay.text =  gameManager.milkPrice.ToString("C2");
@@ -137,21 +175,6 @@ public class UIManager : MonoBehaviour {
             if (popDisplay != null) {
                 popDisplay.text = "Popularity: " + gameManager.popularity;
             }
-
-			if (sugarInventoryInfo !=null && cocoaInventoryInfo !=null && milkInventoryInfo !=null){
-				
-				sugarInventoryInfo.text=gameManager.sugarInventory.ToString();
-				cocoaInventoryInfo.text = gameManager.cocoaInventory.ToString();
-				milkInventoryInfo.text = gameManager.milkInventory.ToString();
-			}
-
-            if (chocoMilkInventory != null)
-            {
-                chocoMilkInventory.text = gameManager.getChocoMilk().ToString();
-            }
-
-
-
 
         }
 	}
