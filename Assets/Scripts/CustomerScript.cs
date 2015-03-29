@@ -6,14 +6,15 @@ using UnityEngine.UI;
 
 public class CustomerScript : MonoBehaviour {
     public float speed;
-    private bool walkingBy=true;
+    private bool walking=true;
     public float yPosition;
 
     public bool deployed;
+    public bool alerted;
 	private Animator anim;
    
 	//
-    public int waypointNumber = 0;
+    public int destination = 0;
 
     bool decidedToBuy;
 
@@ -31,6 +32,9 @@ public class CustomerScript : MonoBehaviour {
     float xStandOffset;
 
 	private GameManager gameManager;
+
+    //walk to stabd
+    private bool walkToStand=false;
 
     void Awake()
     {
@@ -51,15 +55,18 @@ public class CustomerScript : MonoBehaviour {
         
 		ResetSelf ();
 	}
-	private void ResetSelf(){
+    #region Reset
+    private void ResetSelf(){
         gameManager.popularity += happiness;
 
-		walkingBy = true;
+		walking = true;
 		decidedToBuy = false;
 		happiness = 0;
         emotionImage.sprite = null;
         deployed = false;
+        alerted = false;
 
+	    walkToStand = (Random.value < 0.5);
         emotionImage.gameObject.SetActive(false);
 		maxPriceWilling = Random.Range(1.0f, 5.25f);
 
@@ -90,14 +97,15 @@ public class CustomerScript : MonoBehaviour {
 			
 		}
 		
-		waypointNumber = 2;
+		destination = 2;
 		SetPersonality();
 
 		xStandOffset = waypoints[3].transform.position.x + Random.Range(-0.5f, 0.5f);
 		}
+    #endregion
 
 
-	public void EndDay(){
+    public void EndDay(){
 		ResetSelf ();
 		}
 
@@ -108,29 +116,31 @@ public class CustomerScript : MonoBehaviour {
         
         sugarDesired= Mathf.Clamp(Mathf.RoundToInt((temp/10)),1,10);
         cocoaDesired = Mathf.Clamp((10 - Mathf.RoundToInt((temp / 10))),1,10); 
-
-
     }
 
-    private bool DecideToBuy()
+    private IEnumerator DecideToBuy()
     {
+        walking = false;
+        yield return new WaitForSeconds(2.0f);
         if (gameManager.canMakeMilk())
         {
             if (gameManager.salePrice <= maxPriceWilling)
             {
-                return true;
+                StartCoroutine(BuyMilk());
             }
             else
             {
 
-                return false;
+                destination = GetExit();
+                walking = true;
             }
         }
         else
         {
-            return false;
+            destination = GetExit();
         }
     }
+
     private int GetExit()
     {
         
@@ -153,17 +163,6 @@ public class CustomerScript : MonoBehaviour {
 
     }
 
-    void EvaluateDecision()
-    {
-        if (decidedToBuy == true && gameManager.nearEndOfDay==false)
-        {
-            waypointNumber = 3;
-        }
-        else
-        {
-            waypointNumber = GetExit();
-        }
-    }
 
     void Feelings()
     {
@@ -173,11 +172,13 @@ public class CustomerScript : MonoBehaviour {
         if (sugar == sugarDesired)
         {
             happiness += 3;
+
             
         }
         else if (sugar == (sugarDesired - 1) || sugar == (sugarDesired + 1))
         { //Check if amount is close and rewards the player
             happiness += 1;
+
            
 
         }
@@ -209,63 +210,85 @@ public class CustomerScript : MonoBehaviour {
 
     }
 
-    void DisplayFeelings()
+    IEnumerator DisplayFeeling(string feeling)
     {
-        emotionImage.gameObject.SetActive(true);
-
-        if (happiness >= 3)
+        Debug.Log(feeling);
+       
+        try
         {
-            emotionImage.sprite = Resources.Load<Sprite>("Emotions/love");
+            emotionImage.gameObject.SetActive(true);
+            emotionImage.sprite = Resources.Load<Sprite>("Emotions/" + feeling);
+            
+            
         }
-        else if (happiness == 1 | happiness == 2)
+        catch
         {
-            emotionImage.sprite = Resources.Load<Sprite>("Emotions/happy");
-
+            Debug.LogError("No file named "+feeling);
+            emotionImage.gameObject.SetActive(false);
         }
-        else if (happiness == 0)
-        {
-            emotionImage.sprite = Resources.Load<Sprite>("Emotions/okay");
 
-        }
-        else if (happiness < 0)
-        {
-            emotionImage.sprite = Resources.Load<Sprite>("Emotions/sad");
+        yield return new WaitForSeconds(0.5f);
+        emotionImage.gameObject.SetActive(false);
+        //switch (feeling)
+        //{
+        //    case "love":
+        //        emotionImage.sprite = Resources.Load<Sprite>("Emotions/love");
+        //        break;
+        //    case "happy":
+        //        emotionImage.sprite = Resources.Load<Sprite>("Emotions/happy");
+        //        break;
+        //    case "":
+        //        emotionImage.sprite = Resources.Load<Sprite>("Emotions/okay");
+        //        break;
+        //    case "sad":
+        //        emotionImage.sprite = Resources.Load<Sprite>("Emotions/sad");
+        //        break;
 
-        }
+        //}
     }
 
      public IEnumerator BuyMilk()
-    {
-        yield return new WaitForSeconds(1);
+     {
+        
         if (gameManager.canMakeMilk() == true)
         {
             gameManager.CustomerBuy();
             Feelings();
         }
 		anim.SetTrigger("Drinking");
-        yield return new WaitForSeconds(0.75f);
-        DisplayFeelings();
-       
-        waypointNumber = GetExit();
-        walkingBy = true;
+        yield return new WaitForSeconds(1);
+        destination = GetExit();
+        walking = true;
     }
+
+     private IEnumerator Alert()
+    {
+        walking = false;
+        StartCoroutine(DisplayFeeling("alert"));
+        yield return new WaitForSeconds(0.5f);
+        
+        walking = true;
+    }
+
+
 	
 	// Update is called once per frame
 	void Update () {
-		anim.SetBool ("Walking", walkingBy && !gameManager.paused);
+		anim.SetBool ("Walking", walking && !gameManager.paused);
 		//layer is equal to y postion, good for overlaping
         gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = -Mathf.RoundToInt(transform.position.y * 10);
 
 
-        if (waypointNumber != 3)
+        if (destination != 3)
         {
-            target = new Vector2(waypoints[waypointNumber].transform.position.x, yPosition);
+            target = new Vector2(waypoints[destination].transform.position.x, yPosition);
         }
         else
         {
-          target   = new Vector2(xStandOffset,waypoints[waypointNumber].transform.position.y);
+          target   = new Vector2(xStandOffset,waypoints[destination].transform.position.y);
         }
-        if (walkingBy == true && gameManager.paused==false && deployed==true)
+        #region walkingStuff
+        if (walking == true && gameManager.paused==false && deployed==true)
         {
 
             float distance = Vector2.Distance(transform.position, target);
@@ -273,7 +296,7 @@ public class CustomerScript : MonoBehaviour {
             transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
             if (distance < 0.3)
             {
-                switch(waypointNumber){
+                switch(destination){
                     case 0:
                         if (GetExit() == 0)
                         {
@@ -298,20 +321,38 @@ public class CustomerScript : MonoBehaviour {
                         }
                         break;
                     case 2:
-                        decidedToBuy = DecideToBuy();
-                        EvaluateDecision();
+                        if (walkToStand == true||alerted==true)
+                        {
+                            destination = 3;
+                        }
+                        else
+                        {
+                            destination = GetExit();
+                        }
                         break;
                     case 3:
-                        walkingBy = false;
+                        
                         Debug.Log("IM BUYING SOME STUFF YO");
-                        StartCoroutine(BuyMilk());
+                        StartCoroutine(DecideToBuy());
+                        
                         break;
                 }
             }
 
+
+        }
+        #endregion
+
+    }
+    void OnMouseDown()
+    {
+        Debug.Log("clicked");
+        if (alerted == false && destination!= 3)
+        { 
+            StartCoroutine(Alert());
+            destination = 3;
+            alerted = true;
             
         }
-
-
-	}
+    }
 }
