@@ -133,6 +133,7 @@ public class CustomerScript : MonoBehaviour {
 
                 destination = GetExit();
                 walking = true;
+                StartCoroutine(DisplayFeeling("expensive"));
             }
         }
         else
@@ -226,8 +227,14 @@ public class CustomerScript : MonoBehaviour {
             Debug.LogError("No file named "+feeling);
             emotionImage.gameObject.SetActive(false);
         }
-
-        yield return new WaitForSeconds(0.5f);
+        if (feeling == "alert")
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(1.5f);
+        }
         emotionImage.gameObject.SetActive(false);
         //switch (feeling)
         //{
