@@ -236,22 +236,7 @@ public class CustomerScript : MonoBehaviour {
             yield return new WaitForSeconds(1.5f);
         }
         emotionImage.gameObject.SetActive(false);
-        //switch (feeling)
-        //{
-        //    case "love":
-        //        emotionImage.sprite = Resources.Load<Sprite>("Emotions/love");
-        //        break;
-        //    case "happy":
-        //        emotionImage.sprite = Resources.Load<Sprite>("Emotions/happy");
-        //        break;
-        //    case "":
-        //        emotionImage.sprite = Resources.Load<Sprite>("Emotions/okay");
-        //        break;
-        //    case "sad":
-        //        emotionImage.sprite = Resources.Load<Sprite>("Emotions/sad");
-        //        break;
 
-        //}
     }
 
      public IEnumerator BuyMilk()

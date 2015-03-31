@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" name="park" tilewidth="16" tileheight="16">
+  <image source="Assets/Art/Tilemaps/park.png" width="128" height="128"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYBzFo3gUj0gMAAYeAQE=
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAdsAAxJxCzkqF3VD919YtD2RJAzEQkFkfSz0kBBumXh7IVgJiZSCyPpJ8RigkBZHXI/mdkIGwGuhpa6CcGELKfWHOoqR8AzkQClg==
+  </data>
+ </layer>
+</map>
