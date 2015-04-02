@@ -61,7 +61,8 @@ public class GameManager : MonoBehaviour {
 
 
     //Weather Stuff
-    public int temperature=60;
+    public WeatherManager weather;
+    public int temperature;
 
 
 
@@ -77,7 +78,6 @@ public class GameManager : MonoBehaviour {
     }
 	void Start () {
         settings = gameObject.GetComponent<Settings>();
-		temperature = Random.Range(0, 99);
 		uiManager = gameObject.GetComponent<UIManager> ();
         hour = startingHour;
 	}

@@ -16,6 +16,16 @@ public class WeatherManager : MonoBehaviour
 	
 	}
 
+    public int GetTemperature()
+    {
+        return temperature;
+    }
+
+    public string GetCondition()
+    {
+        return condition;
+    }
+
     public void GenerateWeather(string type)
     {
         switch (type)
@@ -49,29 +59,50 @@ public class WeatherManager : MonoBehaviour
         if (randomVal >= 60)
         {
             condition = "clear";
+            StopPrecipitation();
         }else if (randomVal >= 40)
         {
             condition = "partly cloudy";
+            StopPrecipitation();
+
         }else if (randomVal >= 20)
         {
             condition = "cloudy";
+            StopPrecipitation();
+
         }
         else
         {
             if (temperature > 32)
             {
                 condition = "rain";
+                BeginRain();
             }
             else
             {
                 condition = "snow";
+                BeginSnow();
             }
         }
 
     }
+
+    void BeginRain()
+    {
+        rainSystem.gameObject.SetActive(true);
+        snowSystem.gameObject.SetActive(false);
+    }
+
+    void BeginSnow()
+    {
+        snowSystem.gameObject.SetActive(true);
+        rainSystem.gameObject.SetActive(false);
+    }
+
+    void StopPrecipitation()
+    {
+        snowSystem.gameObject.SetActive(false);
+        rainSystem.gameObject.SetActive(false);
+    }
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

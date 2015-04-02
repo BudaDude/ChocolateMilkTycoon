@@ -21,7 +21,7 @@ public class CustomerManager : MonoBehaviour {
 	void Start () {
         gameManager = GameManager.FindObjectOfType<GameManager>()
             ;
-        customers = GameObject.FindObjectsOfType<CustomerScript>();
+        customers = gameObject.GetComponentsInChildren<CustomerScript>();
 	}
 
 	

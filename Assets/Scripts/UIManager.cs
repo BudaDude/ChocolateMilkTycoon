@@ -44,6 +44,7 @@ public class UIManager : MonoBehaviour {
 
 
 	private GameManager gameManager;
+    private WeatherManager weather;
 
 
     //Settings
@@ -59,7 +60,9 @@ public class UIManager : MonoBehaviour {
     
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
+	    weather = GameObject.FindObjectOfType<WeatherManager>();
 		gameManager = gameObject.GetComponent<GameManager> ();
 
 	}
@@ -156,10 +159,11 @@ public class UIManager : MonoBehaviour {
                 }
                 
             }
+            //Temps
             if (tempDisplay != null)
             {
 
-                tempDisplay.text = gameManager.GetTemp();
+                tempDisplay.text = weather.GetTemperature().ToString();
             }
 
             if (priceDisplay != null && priceSlider != null)
