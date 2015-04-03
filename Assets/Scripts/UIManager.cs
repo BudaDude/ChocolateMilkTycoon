@@ -3,8 +3,15 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class UIManager : MonoBehaviour {
+	//
     //info bar
+	//
 	public Text moneyDisplay;
+	//money ticker
+	public float newMoney;
+	public float oldMoney;
+	public float moneySpeed;
+
     public Text centerDisplay;
     public Text tempDisplay;
 
@@ -50,6 +57,8 @@ public class UIManager : MonoBehaviour {
     //Settings
     public GameObject settingsMenu;
 
+
+
     //bools
     bool recipeMenuOpened = true;
     void Awake()
@@ -62,8 +71,10 @@ public class UIManager : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
+
 	    weather = GameObject.FindObjectOfType<WeatherManager>();
 		gameManager = gameObject.GetComponent<GameManager> ();
+		oldMoney=gameManager.money;
 
 	}
 	
@@ -72,6 +83,7 @@ public class UIManager : MonoBehaviour {
         //Cocoa and sugar slider
         if (gameManager != null)
         {
+
             //
             //Sliders
             //
@@ -105,7 +117,12 @@ public class UIManager : MonoBehaviour {
 
             if (moneyDisplay != null)
             {
-                moneyDisplay.text =gameManager.money.ToString("C2");
+				newMoney=gameManager.money;
+
+				if(oldMoney!=newMoney){
+					oldMoney=Mathf.Lerp(oldMoney,newMoney,moneySpeed*Time.deltaTime);
+				}
+				moneyDisplay.text =oldMoney.ToString("C2");
             }
 
             //
