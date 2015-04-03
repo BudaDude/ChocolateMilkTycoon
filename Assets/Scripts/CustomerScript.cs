@@ -32,24 +32,11 @@ public class CustomerScript : MonoBehaviour
 	//walk to stabd
 	private bool walkToStand = false;
 
-	void Awake ()
-	{
-
-		Debug.Log("dafuq");
-	}
-
 	// Use this for initialization
 	void Start ()
 	{
 		gameManager = GameManager.FindObjectOfType<GameManager> ();
 		location = gameManager.currentLocation;
-		Debug.Log (location.name);
-
-		spawn1 = location.gameObject.transform.FindChild("Waypoints").transform.position;
-		spawn2 = location.gameObject.transform.FindChild("Waypoints").transform.position;
-		standPoint = location.gameObject.transform.FindChild("Stand").transform.position;
-
-
 		anim = gameObject.GetComponentInChildren<Animator> ();
 		emotionImage = gameObject.GetComponentInChildren<Image> ();
         
@@ -58,6 +45,17 @@ public class CustomerScript : MonoBehaviour
     #region Reset
 	private void ResetSelf ()
 	{
+		if (location) {
+			Debug.Log(location.transform.Find("Waypoints").transform.FindChild("Spawn1").name);
+			spawn1 = location.transform.Find("Waypoints").transform.FindChild("Spawn1").position;
+			spawn2 = location.transform.Find("Waypoints").transform.FindChild("Spawn2").position;
+			standPoint = location.gameObject.transform.FindChild ("Stand").transform.position;
+		} else {
+			ResetSelf();
+			return;
+		}
+
+
 		gameManager.popularity += happiness;
 
 		walking = true;
@@ -81,8 +79,10 @@ public class CustomerScript : MonoBehaviour
 		
 		if (Random.value > 0.5) {
 			spawnPoint = spawn1;
+			exitPoint=spawn2;
 		} else {
 			spawnPoint = spawn2;
+			exitPoint=spawn1;
 		}
 
 		float yPosition = spawnPoint.y + Random.Range (-1, 1);
@@ -238,7 +238,7 @@ public class CustomerScript : MonoBehaviour
 			if (distance < 0.3) {
                
 				if (target == exitPoint) {
-
+					Debug.Log ("exited at"+target.ToString());
 					if (gameManager.nearEndOfDay == false) {
 						ResetSelf ();
 					} else {

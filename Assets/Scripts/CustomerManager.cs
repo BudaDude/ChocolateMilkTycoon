@@ -20,18 +20,20 @@ public class CustomerManager : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 
-        gameManager = GameManager.FindObjectOfType<GameManager>()
-            ;
+           
         customers = gameObject.GetComponentsInChildren<CustomerScript>();
-
-		foreach (CustomerScript customer in customers) {
-			customer.gameObject.SetActive(false);
-		}
+		gameManager = GameManager.FindObjectOfType<GameManager> ();
+		DeactivateCustomers ();
 	}
 
 	public void ActivateCustomers(){
 		foreach (CustomerScript customer in customers) {
 			customer.gameObject.SetActive(true);
+		}
+	}
+	public void DeactivateCustomers(){
+		foreach (CustomerScript customer in customers) {
+			customer.gameObject.SetActive(false);
 		}
 	}
 	
