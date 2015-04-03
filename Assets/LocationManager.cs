@@ -13,7 +13,7 @@ public class LocationManager : MonoBehaviour
 	{
 	    locations = gameObject.GetComponentsInChildren<Location>();
 	    weatherManager = GameObject.FindObjectOfType<WeatherManager>();
-        SetLocation("park");
+        SetLocation("city");
 	}
 
     void SetLocation(string name)
