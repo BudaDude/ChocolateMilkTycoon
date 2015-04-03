@@ -235,7 +235,7 @@ public class CustomerScript : MonoBehaviour
 			float distance = Vector2.Distance (transform.position, target);
             
 			transform.position = Vector2.MoveTowards (transform.position, target, speed * Time.deltaTime);
-			if (distance < 0.3) {
+			if (distance < 0.5) {
                
 				if (target == exitPoint) {
 					Debug.Log ("exited at"+target.ToString());
