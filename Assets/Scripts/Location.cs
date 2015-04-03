@@ -17,9 +17,9 @@ public class Location : MonoBehaviour
 
 
 	// Use this for initialization
-	void Start ()
+	void Awake ()
 	{
-	    graphics = transform.Find("Graphics").gameObject;
+	    graphics = transform.FindChild("Graphics").gameObject;
 	    CM = gameObject.GetComponentInChildren<CustomerManager>();
         DeactivateLocation();
 
@@ -27,6 +27,7 @@ public class Location : MonoBehaviour
 
     public void ActivateLocation()
     {
+
         graphics.SetActive(true);
         CM.gameObject.SetActive(true);
 

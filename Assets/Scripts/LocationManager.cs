@@ -5,7 +5,7 @@ public class LocationManager : MonoBehaviour
 {
 
     private Location[] locations;
-    public Location currentLocation;
+    private Location currentLocation;
     private WeatherManager weatherManager;
 
 	// Use this for initialization
@@ -33,6 +33,10 @@ public class LocationManager : MonoBehaviour
             }
         }   
     }
+
+	public Location GetLocation(){
+		return currentLocation;
+	}
 	
 	// Update is called once per frame
 	void Update () {
