@@ -9,14 +9,14 @@ public class LocationManager : MonoBehaviour
     private WeatherManager weatherManager;
 
 	// Use this for initialization
-	void Start ()
+	void Awake ()
 	{
 	    locations = gameObject.GetComponentsInChildren<Location>();
 	    weatherManager = GameObject.FindObjectOfType<WeatherManager>();
-        SetLocation("city");
+        
 	}
 
-    void SetLocation(string name)
+    public void SetLocation(string name)
     {
         foreach (Location loco in locations)
         {

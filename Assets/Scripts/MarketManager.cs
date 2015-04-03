@@ -27,9 +27,10 @@ public class MarketManager : MonoBehaviour
 
 
 	private GameManager gameManager;
+	private CustomerManager cusManager;
 	private UIManager uiManager;
 
-void Awake(){
+	void Awake(){
 		gameManager = GameObject.FindObjectOfType<GameManager> ().GetComponent<GameManager> ();
 		uiManager = GameObject.FindObjectOfType<UIManager> ().GetComponent<UIManager> ();
 		}

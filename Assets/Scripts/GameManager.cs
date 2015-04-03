@@ -71,15 +71,25 @@ public class GameManager : MonoBehaviour {
 	private UIManager uiManager;
     private Settings settings;
 
+	private CustomerManager cusManager;
+	//Current Location
+	private LocationManager locManager;
+	public Location currentLocation;
+
 
     void Awake()
     {
-
+		settings = gameObject.GetComponent<Settings>();
+		uiManager = gameObject.GetComponent<UIManager> ();
+		locManager = GameObject.FindObjectOfType<LocationManager> ().GetComponent<LocationManager>();
+		cusManager=GameObject.FindObjectOfType<CustomerManager> ().GetComponent<CustomerManager>();
     }
 	void Start () {
-        settings = gameObject.GetComponent<Settings>();
-		uiManager = gameObject.GetComponent<UIManager> ();
+
         hour = startingHour;
+		locManager.SetLocation ("City");
+		currentLocation = locManager.GetLocation ();
+		cusManager.ActivateCustomers ();
 	}
 
     void TimeCycle()
@@ -294,6 +304,7 @@ public class GameManager : MonoBehaviour {
 	void Update () {
         if (paused == false)
         {
+			currentLocation=locManager.GetLocation();
             
             tickTimer+= Time.deltaTime*timeMult;
            

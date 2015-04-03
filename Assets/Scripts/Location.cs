@@ -12,15 +12,15 @@ public class Location : MonoBehaviour
     public bool secret;
 
     private GameObject graphics;
-    private CustomerManager CM;
+
+	
 
 
 
 	// Use this for initialization
 	void Awake ()
 	{
-	    graphics = transform.FindChild("Graphics").gameObject;
-	    CM = gameObject.GetComponentInChildren<CustomerManager>();
+		graphics = transform.FindChild("Graphics").gameObject;
         DeactivateLocation();
 
 	}
@@ -29,18 +29,14 @@ public class Location : MonoBehaviour
     {
 
         graphics.SetActive(true);
-        CM.gameObject.SetActive(true);
+
 
     }
 
     public void DeactivateLocation()
     {
         graphics.SetActive(false);
-        CM.gameObject.SetActive(false);
-    }
 
-    public CustomerManager GetCustomerManager()
-    {
-        return CM;
     }
+	
 }

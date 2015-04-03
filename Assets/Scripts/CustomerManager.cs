@@ -18,12 +18,22 @@ public class CustomerManager : MonoBehaviour {
     
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
+
         gameManager = GameManager.FindObjectOfType<GameManager>()
             ;
         customers = gameObject.GetComponentsInChildren<CustomerScript>();
+
+		foreach (CustomerScript customer in customers) {
+			customer.gameObject.SetActive(false);
+		}
 	}
 
+	public void ActivateCustomers(){
+		foreach (CustomerScript customer in customers) {
+			customer.gameObject.SetActive(true);
+		}
+	}
 	
 	// Update is called once per frame
 	void Update () {
