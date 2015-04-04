@@ -50,7 +50,8 @@ public class GameManager : MonoBehaviour {
 	public bool paused=true;
 
     
-
+	//Peeps
+	private Peepr peepR;
 
 	//feats
 	public bool milkGoesBad;
@@ -77,8 +78,11 @@ public class GameManager : MonoBehaviour {
 	public Location currentLocation;
 
 
+
+
     void Awake()
     {
+		peepR = GameObject.FindObjectOfType<Peepr> ().GetComponent<Peepr> ();
 		settings = gameObject.GetComponent<Settings>();
 		uiManager = gameObject.GetComponent<UIManager> ();
 		locManager = GameObject.FindObjectOfType<LocationManager> ().GetComponent<LocationManager>();
@@ -87,10 +91,12 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 
         hour = startingHour;
-		locManager.SetLocation ("Park");
+		locManager.SetLocation ("City");
 		currentLocation = locManager.GetLocation ();
 		cusManager.ActivateCustomers ();
 	}
+
+
 
     void TimeCycle()
     {

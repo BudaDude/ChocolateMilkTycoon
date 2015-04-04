@@ -5,11 +5,20 @@ using UnityEngine.UI;
 
 public class CustomerScript : MonoBehaviour
 {
+
+	//Varibles
+	public string customerName;
 	public float speed;
+
+
 	private bool walking = true;
+	private bool flipped;
+	float pathCompletion;
 	public bool deployed;
+
 	public bool alerted;
-	private Animator anim;
+
+
 	bool decidedToBuy;
 	private Vector2 spawn1;
 	private Vector2 spawn2;
@@ -26,15 +35,23 @@ public class CustomerScript : MonoBehaviour
 	public int cocoaDesired;
 	public int sugarDesired;
 	public Image emotionImage;
+
+	//Components
 	private GameManager gameManager;
+	private Peepr peepr;
 	private Location location;
+	private Animator anim;
 
 	//walk to stabd
 	private bool walkToStand = false;
+	
+
+
 
 	// Use this for initialization
 	void Start ()
 	{
+		peepr=GameObject.FindObjectOfType<Peepr> ().GetComponent<Peepr> ();
 		gameManager = GameManager.FindObjectOfType<GameManager> ();
 		location = gameManager.currentLocation;
 		anim = gameObject.GetComponentInChildren<Animator> ();
@@ -59,6 +76,7 @@ public class CustomerScript : MonoBehaviour
 		gameManager.popularity += happiness;
 
 		walking = true;
+		flipped = false;
 		decidedToBuy = false;
 		happiness = 0;
 		emotionImage.sprite = null;
@@ -91,11 +109,11 @@ public class CustomerScript : MonoBehaviour
 
 		//Rotates the image to face the correct direction
 		if (spawnPoint == spawn1) {
-			gameObject.GetComponentInChildren<SpriteRenderer> ().gameObject.transform.localEulerAngles = new Vector3 (0, 0, 0);
+			FaceLeft();
 			
 			
 		} else if (spawnPoint == spawn2) {
-			gameObject.GetComponentInChildren<SpriteRenderer> ().gameObject.transform.localEulerAngles = new Vector3 (0, 180, 0);
+			FaceRight();
 			
 		}
 		target = exitPoint;
@@ -108,6 +126,26 @@ public class CustomerScript : MonoBehaviour
 	public void EndDay ()
 	{
 		ResetSelf ();
+	}
+
+	private void Flip(){
+		if (transform.localEulerAngles.y == 0) {
+			FaceRight ();
+		} else {
+			FaceLeft();
+		}
+
+	}
+
+	private void FaceLeft(){
+		transform.localEulerAngles=new Vector3 (0, 0, 0);
+		gameObject.GetComponentInChildren<Canvas>().transform.localEulerAngles=new Vector3 (0, 0, 0);
+		//gameObject.GetComponentInChildren<SpriteRenderer> ().gameObject.transform.localEulerAngles = new Vector3 (0, 0, 0);
+	}
+	private void FaceRight(){
+		transform.localEulerAngles=new Vector3 (0, 180, 0);
+		gameObject.GetComponentInChildren<Canvas>().transform.localEulerAngles=new Vector3 (0, 180, 0);
+		//gameObject.GetComponentInChildren<SpriteRenderer> ().gameObject.transform.localEulerAngles = new Vector3 (0, 180, 0);
 	}
 
 	void SetPersonality ()
@@ -208,6 +246,11 @@ public class CustomerScript : MonoBehaviour
 		yield return new WaitForSeconds (1);
 		target = exitPoint;
 		walking = true;
+		peepr.CreatePeep ("Bill", "YUM!!!!");
+		if (flipped) {
+			Flip();
+			flipped=false;
+		}
 	}
 
 	private IEnumerator Alert ()
@@ -224,6 +267,7 @@ public class CustomerScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+
 		anim.SetBool ("Walking", walking && !gameManager.paused);
 		//layer is equal to y postion, good for overlaping
 		gameObject.GetComponentInChildren<SpriteRenderer> ().sortingOrder = -Mathf.RoundToInt (transform.position.y * 10);
@@ -233,20 +277,21 @@ public class CustomerScript : MonoBehaviour
 		if (walking == true && gameManager.paused == false && deployed == true) {
 
 			float distance = Vector2.Distance (transform.position, target);
+
+			pathCompletion=distance/Vector2.Distance(spawnPoint,exitPoint);
+
             
 			transform.position = Vector2.MoveTowards (transform.position, target, speed * Time.deltaTime);
 			if (distance < 0.5) {
                
 				if (target == exitPoint) {
-					Debug.Log ("exited at"+target.ToString());
 					if (gameManager.nearEndOfDay == false) {
 						ResetSelf ();
 					} else {
 						EndDay ();
 					}
 				} else if (target == standPoint) {
-                        
-					Debug.Log ("IM BUYING SOME STUFF YO");
+
 					StartCoroutine (DecideToBuy ());
 
 
@@ -261,9 +306,14 @@ public class CustomerScript : MonoBehaviour
 
 	void OnMouseDown ()
 	{
-		Debug.Log ("clicked");
-		if (alerted == false && target != standPoint) { 
+		if (alerted == false && target != standPoint) {
 			StartCoroutine (Alert ());
+			Debug.Log(pathCompletion);
+			if(pathCompletion < 0.5){
+				Flip ();
+				flipped = true;
+			}
+
 			target = standPoint;
 			alerted = true;
             

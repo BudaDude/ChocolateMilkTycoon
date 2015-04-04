@@ -21,6 +21,7 @@ public class Location : MonoBehaviour
 	void Awake ()
 	{
 		graphics = transform.FindChild("Graphics").gameObject;
+
         DeactivateLocation();
 
 	}
