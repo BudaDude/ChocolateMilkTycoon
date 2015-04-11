@@ -1,23 +1,25 @@
 fileFormatVersion: 2
-guid: f015147482f024e9a8d9e89636091547
+guid: e458c09aebaee4e46b5e99932b973ce0
+timeCreated: 1428518289
+licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: customer4_0
-    21300002: customer4_1
-    21300004: customer4_2
-    21300006: customer4_3
-    21300008: customer4_4
-    21300010: customer4_5
-    21300012: customer4_6
-    21300014: customer4_7
-    21300016: customer4_8
-    21300018: customer4_9
-    21300020: customer4_10
-    21300022: customer4_11
+    21300000: spritesheet_0
+    21300002: spritesheet_1
+    21300004: spritesheet_2
+    21300006: spritesheet_3
+    21300008: spritesheet_4
+    21300010: spritesheet_5
+    21300012: spritesheet_6
+    21300014: spritesheet_7
+    21300016: spritesheet_8
+    21300018: spritesheet_9
+    21300020: spritesheet_10
+    21300022: spritesheet_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -37,9 +39,9 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 1024
+  maxTextureSize: 2048
   textureSettings:
-    filterMode: 0
+    filterMode: -1
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -53,25 +55,13 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings:
-  - buildTarget: Android
-    maxTextureSize: 1024
-    textureFormat: -3
-    compressionQuality: 50
-  - buildTarget: Web
-    maxTextureSize: 2048
-    textureFormat: -3
-    compressionQuality: 50
-  - buildTarget: iPhone
-    maxTextureSize: 1024
-    textureFormat: -3
-    compressionQuality: 50
+  buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: customer4_0
+    - name: spritesheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -81,7 +71,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_1
+    - name: spritesheet_1
       rect:
         serializedVersion: 2
         x: 16
@@ -91,7 +81,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_2
+    - name: spritesheet_2
       rect:
         serializedVersion: 2
         x: 32
@@ -101,7 +91,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_3
+    - name: spritesheet_3
       rect:
         serializedVersion: 2
         x: 48
@@ -111,7 +101,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_4
+    - name: spritesheet_4
       rect:
         serializedVersion: 2
         x: 0
@@ -121,7 +111,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_5
+    - name: spritesheet_5
       rect:
         serializedVersion: 2
         x: 16
@@ -131,7 +121,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_6
+    - name: spritesheet_6
       rect:
         serializedVersion: 2
         x: 32
@@ -141,7 +131,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_7
+    - name: spritesheet_7
       rect:
         serializedVersion: 2
         x: 48
@@ -151,7 +141,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_8
+    - name: spritesheet_8
       rect:
         serializedVersion: 2
         x: 0
@@ -161,7 +151,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_9
+    - name: spritesheet_9
       rect:
         serializedVersion: 2
         x: 16
@@ -171,7 +161,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_10
+    - name: spritesheet_10
       rect:
         serializedVersion: 2
         x: 32
@@ -181,7 +171,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_11
+    - name: spritesheet_11
       rect:
         serializedVersion: 2
         x: 48

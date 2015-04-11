@@ -1,16 +1,18 @@
 fileFormatVersion: 2
-guid: d398cad241a9243af97a25506c638cfd
+guid: 8c44353b58e953647b02f4fc4973c767
+timeCreated: 1428733375
+licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: customer1_0
-    21300002: customer1_1
-    21300004: customer1_2
-    21300006: customer1_3
-    21300008: customer1_4
-    21300010: customer1_5
-    21300012: customer1_6
-    21300014: customer1_7
-    21300016: customer1_8
+    21300000: bob_0
+    21300002: bob_1
+    21300004: bob_2
+    21300006: bob_3
+    21300008: bob_4
+    21300010: bob_5
+    21300012: bob_6
+    21300014: bob_7
+    21300016: bob_8
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -34,7 +36,7 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 1024
+  maxTextureSize: 2048
   textureSettings:
     filterMode: 0
     aniso: 16
@@ -58,17 +60,9 @@ TextureImporter:
     maxTextureSize: 2048
     textureFormat: -3
     compressionQuality: 50
-  - buildTarget: iPhone
-    maxTextureSize: 1024
-    textureFormat: -3
-    compressionQuality: 50
-  - buildTarget: iPhone
-    maxTextureSize: 1024
-    textureFormat: -3
-    compressionQuality: 50
   spriteSheet:
     sprites:
-    - name: customer1_0
+    - name: bob_0
       rect:
         serializedVersion: 2
         x: 0
@@ -78,7 +72,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer1_1
+    - name: bob_1
       rect:
         serializedVersion: 2
         x: 16
@@ -88,7 +82,27 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer1_2
+    - name: bob_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bob_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bob_4
       rect:
         serializedVersion: 2
         x: 0
@@ -98,7 +112,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer1_3
+    - name: bob_5
       rect:
         serializedVersion: 2
         x: 16
@@ -108,7 +122,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer1_4
+    - name: bob_6
       rect:
         serializedVersion: 2
         x: 32
@@ -118,7 +132,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer1_5
+    - name: bob_7
       rect:
         serializedVersion: 2
         x: 48
@@ -128,7 +142,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer1_6
+    - name: bob_8
       rect:
         serializedVersion: 2
         x: 0
@@ -136,27 +150,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer1_7
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer1_8
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

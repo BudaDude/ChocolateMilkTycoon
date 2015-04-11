@@ -40,7 +40,9 @@ public class CustomerScript : MonoBehaviour
 	private GameManager gameManager;
 	private Peepr peepr;
 	private Location location;
-	private Animator anim;
+	//private Animator anim;
+
+    private CustomerAnimation cusAnim;
 
 	//walk to stabd
 	private bool walkToStand = false;
@@ -54,9 +56,9 @@ public class CustomerScript : MonoBehaviour
 		peepr=GameObject.FindObjectOfType<Peepr> ().GetComponent<Peepr> ();
 		gameManager = GameManager.FindObjectOfType<GameManager> ();
 		location = gameManager.currentLocation;
-		anim = gameObject.GetComponentInChildren<Animator> ();
+		//anim = gameObject.GetComponentInChildren<Animator> ();
 		emotionImage = gameObject.GetComponentInChildren<Image> ();
-        
+	    cusAnim = gameObject.GetComponentInChildren<CustomerAnimation>();
 		ResetSelf ();
 	}
     #region Reset
@@ -72,6 +74,10 @@ public class CustomerScript : MonoBehaviour
 			return;
 		}
 
+	    if (Random.value > .8f)
+	    {
+	        MakePeep("Out for a stoll near the "+location.name);
+	    }
 
 		gameManager.popularity += happiness;
 
@@ -169,6 +175,7 @@ public class CustomerScript : MonoBehaviour
 				target = exitPoint;
 				walking = true;
 				StartCoroutine (DisplayFeeling ("expensive"));
+                MakePeep("Who would pay this much for some chocolate milk #notme");
 			}
 		} else {
 			target = exitPoint;
@@ -242,11 +249,11 @@ public class CustomerScript : MonoBehaviour
 			gameManager.CustomerBuy ();
 			Feelings ();
 		}
-		anim.SetTrigger ("Drinking");
+	    cusAnim.drinking = true;
 		yield return new WaitForSeconds (1);
 		target = exitPoint;
 		walking = true;
-		peepr.CreatePeep ("Bill", "YUM!!!!");
+		
 		if (flipped) {
 			Flip();
 			flipped=false;
@@ -262,13 +269,18 @@ public class CustomerScript : MonoBehaviour
 		walking = true;
 	}
 
+    private void MakePeep(string messege)
+    {
+        peepr.CreatePeep (customerName,messege);
+    }
+
 
 	
 	// Update is called once per frame
 	void Update ()
 	{
 
-		anim.SetBool ("Walking", walking && !gameManager.paused);
+	    cusAnim.walking = walking;
 		//layer is equal to y postion, good for overlaping
 		gameObject.GetComponentInChildren<SpriteRenderer> ().sortingOrder = -Mathf.RoundToInt (transform.position.y * 10);
 

@@ -1,18 +1,19 @@
 fileFormatVersion: 2
-guid: 54d2d016556954429962faee097d4101
+guid: 53985789c91524dfab1b9619c51afee3
 TextureImporter:
   fileIDToRecycleName:
-    21300000: customer2_0
-    21300002: customer2_1
-    21300004: customer2_2
-    21300006: customer2_3
-    21300008: customer2_4
-    21300010: customer2_5
-    21300012: customer2_6
-    21300014: customer2_7
-    21300016: customer2_8
-    21300018: customer2_9
-    21300020: customer2_10
+    21300000: customer3_0
+    21300002: customer3_1
+    21300004: customer3_2
+    21300006: customer3_3
+    21300008: customer3_4
+    21300010: customer3_5
+    21300012: customer3_6
+    21300014: customer3_7
+    21300016: customer3_8
+    21300018: customer3_9
+    21300020: customer3_10
+    21300022: customer3_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -56,6 +57,10 @@ TextureImporter:
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings:
+  - buildTarget: Android
+    maxTextureSize: 1024
+    textureFormat: -3
+    compressionQuality: 50
   - buildTarget: Web
     maxTextureSize: 2048
     textureFormat: -3
@@ -64,9 +69,13 @@ TextureImporter:
     maxTextureSize: 1024
     textureFormat: -3
     compressionQuality: 50
+  - buildTarget: Standalone
+    maxTextureSize: 1024
+    textureFormat: -3
+    compressionQuality: 50
   spriteSheet:
     sprites:
-    - name: customer2_0
+    - name: customer3_0
       rect:
         serializedVersion: 2
         x: 0
@@ -76,7 +85,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer2_1
+    - name: customer3_1
       rect:
         serializedVersion: 2
         x: 16
@@ -86,7 +95,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer2_2
+    - name: customer3_2
       rect:
         serializedVersion: 2
         x: 32
@@ -96,7 +105,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer2_3
+    - name: customer3_3
       rect:
         serializedVersion: 2
         x: 48
@@ -106,7 +115,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer2_4
+    - name: customer3_4
       rect:
         serializedVersion: 2
         x: 0
@@ -116,7 +125,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer2_5
+    - name: customer3_5
       rect:
         serializedVersion: 2
         x: 16
@@ -126,7 +135,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer2_6
+    - name: customer3_6
       rect:
         serializedVersion: 2
         x: 32
@@ -136,7 +145,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer2_7
+    - name: customer3_7
       rect:
         serializedVersion: 2
         x: 48
@@ -146,7 +155,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer2_8
+    - name: customer3_8
       rect:
         serializedVersion: 2
         x: 0
@@ -156,7 +165,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer2_9
+    - name: customer3_9
       rect:
         serializedVersion: 2
         x: 16
@@ -166,10 +175,20 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer2_10
+    - name: customer3_10
       rect:
         serializedVersion: 2
         x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: customer3_11
+      rect:
+        serializedVersion: 2
+        x: 48
         y: 0
         width: 16
         height: 16
