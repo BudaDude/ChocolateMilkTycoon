@@ -1,22 +1,25 @@
 fileFormatVersion: 2
-guid: 54d2d016556954429962faee097d4101
+guid: 1c64d9e4bbf93c54686fa15fdb0a7b0e
+timeCreated: 1428735594
+licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: customer2_0
-    21300002: customer2_1
-    21300004: customer2_2
-    21300006: customer2_3
-    21300008: customer2_4
-    21300010: customer2_5
-    21300012: customer2_6
-    21300014: customer2_7
-    21300016: customer2_8
-    21300018: customer2_9
-    21300020: customer2_10
+    21300000: ryan_0
+    21300002: ryan_1
+    21300004: ryan_2
+    21300006: ryan_3
+    21300008: ryan_4
+    21300010: ryan_5
+    21300012: ryan_6
+    21300014: ryan_7
+    21300016: ryan_8
+    21300018: ryan_9
+    21300020: ryan_10
+    21300022: ryan_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -36,7 +39,7 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 1024
+  maxTextureSize: 2048
   textureSettings:
     filterMode: 0
     aniso: 16
@@ -56,21 +59,13 @@ TextureImporter:
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings:
-  - buildTarget: Web
-    maxTextureSize: 2048
-    textureFormat: -3
-    compressionQuality: 50
   - buildTarget: iPhone
-    maxTextureSize: 1024
-    textureFormat: -3
-    compressionQuality: 50
-  - buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     textureFormat: -3
     compressionQuality: 50
   spriteSheet:
     sprites:
-    - name: customer2_0
+    - name: ryan_0
       rect:
         serializedVersion: 2
         x: 0
@@ -80,7 +75,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer2_1
+    - name: ryan_1
       rect:
         serializedVersion: 2
         x: 16
@@ -90,7 +85,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer2_2
+    - name: ryan_2
       rect:
         serializedVersion: 2
         x: 32
@@ -100,7 +95,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer2_3
+    - name: ryan_3
       rect:
         serializedVersion: 2
         x: 48
@@ -110,7 +105,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer2_4
+    - name: ryan_4
       rect:
         serializedVersion: 2
         x: 0
@@ -120,7 +115,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer2_5
+    - name: ryan_5
       rect:
         serializedVersion: 2
         x: 16
@@ -130,7 +125,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer2_6
+    - name: ryan_6
       rect:
         serializedVersion: 2
         x: 32
@@ -140,7 +135,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer2_7
+    - name: ryan_7
       rect:
         serializedVersion: 2
         x: 48
@@ -150,7 +145,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer2_8
+    - name: ryan_8
       rect:
         serializedVersion: 2
         x: 0
@@ -160,7 +155,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer2_9
+    - name: ryan_9
       rect:
         serializedVersion: 2
         x: 16
@@ -170,10 +165,20 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer2_10
+    - name: ryan_10
       rect:
         serializedVersion: 2
         x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ryan_11
+      rect:
+        serializedVersion: 2
+        x: 48
         y: 0
         width: 16
         height: 16

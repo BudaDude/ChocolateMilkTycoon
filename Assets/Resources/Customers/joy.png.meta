@@ -1,19 +1,21 @@
 fileFormatVersion: 2
-guid: f015147482f024e9a8d9e89636091547
+guid: af075458eb0b43e46870988b49880709
+timeCreated: 1428734604
+licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: customer4_0
-    21300002: customer4_1
-    21300004: customer4_2
-    21300006: customer4_3
-    21300008: customer4_4
-    21300010: customer4_5
-    21300012: customer4_6
-    21300014: customer4_7
-    21300016: customer4_8
-    21300018: customer4_9
-    21300020: customer4_10
-    21300022: customer4_11
+    21300000: joy_0
+    21300002: joy_1
+    21300004: joy_2
+    21300006: joy_3
+    21300008: joy_4
+    21300010: joy_5
+    21300012: joy_6
+    21300014: joy_7
+    21300016: joy_8
+    21300018: joy_9
+    21300020: joy_10
+    21300022: joy_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -37,7 +39,7 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 1024
+  maxTextureSize: 2048
   textureSettings:
     filterMode: 0
     aniso: 16
@@ -57,25 +59,13 @@ TextureImporter:
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings:
-  - buildTarget: Android
-    maxTextureSize: 1024
-    textureFormat: -3
-    compressionQuality: 50
-  - buildTarget: Web
-    maxTextureSize: 2048
-    textureFormat: -3
-    compressionQuality: 50
   - buildTarget: iPhone
-    maxTextureSize: 1024
-    textureFormat: -3
-    compressionQuality: 50
-  - buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     textureFormat: -3
     compressionQuality: 50
   spriteSheet:
     sprites:
-    - name: customer4_0
+    - name: joy_0
       rect:
         serializedVersion: 2
         x: 0
@@ -85,7 +75,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_1
+    - name: joy_1
       rect:
         serializedVersion: 2
         x: 16
@@ -95,7 +85,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_2
+    - name: joy_2
       rect:
         serializedVersion: 2
         x: 32
@@ -105,7 +95,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_3
+    - name: joy_3
       rect:
         serializedVersion: 2
         x: 48
@@ -115,7 +105,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_4
+    - name: joy_4
       rect:
         serializedVersion: 2
         x: 0
@@ -125,7 +115,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_5
+    - name: joy_5
       rect:
         serializedVersion: 2
         x: 16
@@ -135,7 +125,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_6
+    - name: joy_6
       rect:
         serializedVersion: 2
         x: 32
@@ -145,7 +135,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_7
+    - name: joy_7
       rect:
         serializedVersion: 2
         x: 48
@@ -155,7 +145,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_8
+    - name: joy_8
       rect:
         serializedVersion: 2
         x: 0
@@ -165,7 +155,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_9
+    - name: joy_9
       rect:
         serializedVersion: 2
         x: 16
@@ -175,7 +165,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_10
+    - name: joy_10
       rect:
         serializedVersion: 2
         x: 32
@@ -185,7 +175,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: customer4_11
+    - name: joy_11
       rect:
         serializedVersion: 2
         x: 48

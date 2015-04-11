@@ -294,7 +294,7 @@ public class CustomerScript : MonoBehaviour
 
             
 			transform.position = Vector2.MoveTowards (transform.position, target, speed * Time.deltaTime);
-			if (distance < 0.5) {
+			if (distance < 0.6) {
                
 				if (target == exitPoint) {
 					if (gameManager.nearEndOfDay == false) {
