@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour {
 
 
 
+
     void Awake()
     {
 		peepR = GameObject.FindObjectOfType<Peepr> ().GetComponent<Peepr> ();
@@ -87,6 +88,7 @@ public class GameManager : MonoBehaviour {
 		uiManager = gameObject.GetComponent<UIManager> ();
 		locManager = GameObject.FindObjectOfType<LocationManager> ().GetComponent<LocationManager>();
 		cusManager=GameObject.FindObjectOfType<CustomerManager> ().GetComponent<CustomerManager>();
+        weather = GameObject.FindObjectOfType<WeatherManager>().GetComponent<WeatherManager>();
     }
 	void Start () {
 

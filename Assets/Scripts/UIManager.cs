@@ -24,9 +24,15 @@ public class UIManager : MonoBehaviour {
 
     public Text[] cocoaInventoryDisplay;
     public Text cocoaPriceDisplay;
-    //
+    
+    
+    //StartMenu
+
 
     public GameObject recipeMenu;
+
+    public Text[] LocationNameTexts;
+    public Text[] WeatherDisplayTexts;
 
     public Slider cocoaAmtSlider;
     public Slider sugarAmtSlider;
@@ -125,6 +131,29 @@ public class UIManager : MonoBehaviour {
 				moneyDisplay.text =oldMoney.ToString("C2");
             }
 
+            ///
+            /// LocationInfro Start menu
+            /// 
+            if (LocationNameTexts.Length > 0)
+            {
+                foreach (Text displayText in LocationNameTexts)
+                {
+                    displayText.text = gameManager.currentLocation.name.ToString();
+                }
+                {
+                    
+                }
+            }
+            if (WeatherDisplayTexts.Length > 0)
+            {
+                foreach (Text displayText in WeatherDisplayTexts)
+                {
+                    displayText.text = gameManager.weather.GetCondition()+", "+gameManager.weather.GetTemperature().ToString();
+                }
+                {
+
+                }
+            }
             //
             //Inventory Displays
             //

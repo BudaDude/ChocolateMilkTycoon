@@ -58,16 +58,16 @@ public class WeatherManager : MonoBehaviour
 
         if (randomVal >= 60)
         {
-            condition = "clear";
+            condition = "Clear";
             StopPrecipitation();
         }else if (randomVal >= 40)
         {
-            condition = "partly cloudy";
+            condition = "Partly Cloudy";
             StopPrecipitation();
 
         }else if (randomVal >= 20)
         {
-            condition = "cloudy";
+            condition = "Cloudy";
             StopPrecipitation();
 
         }
@@ -75,12 +75,12 @@ public class WeatherManager : MonoBehaviour
         {
             if (temperature > 32)
             {
-                condition = "rain";
+                condition = "Rain";
                 BeginRain();
             }
             else
             {
-                condition = "snow";
+                condition = "Snow";
                 BeginSnow();
             }
         }
