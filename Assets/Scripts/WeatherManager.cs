@@ -23,7 +23,7 @@ public class WeatherManager : MonoBehaviour
 
     public string GetCondition()
     {
-        return condition;
+        return condition.ToString();
     }
 
     public void GenerateWeather(string type)

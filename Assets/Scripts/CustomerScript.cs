@@ -76,7 +76,32 @@ public class CustomerScript : MonoBehaviour
 
 	    if (Random.value > .8f)
 	    {
-	        MakePeep("Out for a stoll near the "+location.name);
+            if (Random.value > .6f)
+            {
+                MakePeep("Random");
+            }
+            else
+            {
+                if (gameManager.weather.GetCondition() == "Rain")
+                {
+                    MakePeep("Rain");
+                }
+                else if (gameManager.weather.GetCondition() == "Snow")
+                {
+                    MakePeep("Snow");
+
+                }
+                else if (gameManager.weather.GetCondition() == "Clear" && gameManager.weather.GetTemperature() > 60)
+                {
+                    MakePeep("Nice Day");
+                }
+                else if (gameManager.weather.GetTemperature() > 90)
+                {
+                    MakePeep("Hot");
+                }
+                else if (gameManager.weather.GetTemperature() < 40)
+                    MakePeep("Cold");
+            }
 	    }
 
 		gameManager.popularity += happiness;
