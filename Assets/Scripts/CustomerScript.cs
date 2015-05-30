@@ -200,7 +200,11 @@ public class CustomerScript : MonoBehaviour
 				target = exitPoint;
 				walking = true;
 				StartCoroutine (DisplayFeeling ("expensive"));
-                MakePeep("Who would pay this much for some chocolate milk #notme");
+                if (flipped)
+                {
+                    Flip();
+                    flipped = false;
+                }
 			}
 		} else {
 			target = exitPoint;

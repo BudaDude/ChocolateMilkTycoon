@@ -14,7 +14,6 @@ public class Peepr : MonoBehaviour {
     void Start()
     {
         ParseCSV();
-        CreatePeep("Test", "Rain");
     }
     void ParseCSV()
     {
