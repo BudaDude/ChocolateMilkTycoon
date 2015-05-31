@@ -34,9 +34,13 @@ public class LocationManager : MonoBehaviour
         }   
     }
 
-	public Location GetLocation(){
+	public Location GetCurrentLocation(){
 		return currentLocation;
 	}
+    public Location[] GetLocations()
+    {
+        return locations;
+    }
 	
 	// Update is called once per frame
 	void Update () {

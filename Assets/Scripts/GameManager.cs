@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour {
 
         hour = startingHour;
 		locManager.SetLocation ("Park");
-		currentLocation = locManager.GetLocation ();
+		currentLocation = locManager.GetCurrentLocation ();
 		cusManager.ActivateCustomers ();
 	}
 
@@ -312,7 +312,7 @@ public class GameManager : MonoBehaviour {
 	void Update () {
         if (paused == false)
         {
-			currentLocation=locManager.GetLocation();
+			currentLocation=locManager.GetCurrentLocation();
             
             tickTimer+= Time.deltaTime*timeMult;
            
