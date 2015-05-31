@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 
         hour = startingHour;
-		locManager.SetLocation ("City");
+		locManager.SetLocation ("Park");
 		currentLocation = locManager.GetLocation ();
 		cusManager.ActivateCustomers ();
 	}

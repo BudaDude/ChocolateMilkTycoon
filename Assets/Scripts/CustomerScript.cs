@@ -251,8 +251,7 @@ public class CustomerScript : MonoBehaviour
 
 	IEnumerator DisplayFeeling (string feeling)
 	{
-		Debug.Log (feeling);
-       
+     
 		try {
 			emotionImage.gameObject.SetActive (true);
 			emotionImage.sprite = Resources.Load<Sprite> ("Emotions/" + feeling);

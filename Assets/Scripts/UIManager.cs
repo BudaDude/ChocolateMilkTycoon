@@ -65,12 +65,18 @@ public class UIManager : MonoBehaviour {
 
 
 
+
+    //Location Selecter
+    private Button selectedLocation;
+
     //bools
     bool recipeMenuOpened = true;
     void Awake()
     {
 
     }
+
+
 
     
 
