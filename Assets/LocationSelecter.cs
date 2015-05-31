@@ -21,7 +21,7 @@ public class LocationSelecter : MonoBehaviour {
 
         locoSlot.transform.Find("NameLabel").GetComponent<Text>().text=loc.name;
         locoSlot.transform.Find("PriceLabel").GetComponent<Text>().text = loc.rent.ToString("C2")+" / day";
-
+        locoSlot.name = loc.name;
 
 
         if (loc.name == locoMan.GetCurrentLocation().name)
@@ -36,6 +36,17 @@ public class LocationSelecter : MonoBehaviour {
         locoSlot.GetComponent<Toggle>().group = gameObject.GetComponent<ToggleGroup>();
         locoSlot.transform.SetParent(gameObject.transform, false);
         locoSlot.transform.SetAsFirstSibling();
+    }
+
+    public void ChangeLocation()
+    {
+        foreach (Toggle tog in gameObject.GetComponent<ToggleGroup>().ActiveToggles())
+        {
+            if (tog.isOn == true)
+            {
+                locoMan.SetLocation(tog.name);
+            }
+        }
     }
 
     void LateUpdate()

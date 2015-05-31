@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour {
 
         hour = startingHour;
 		locManager.SetLocation ("Park");
-		currentLocation = locManager.GetCurrentLocation ();
+        currentLocation = locManager.GetCurrentLocation();
 		cusManager.ActivateCustomers ();
 	}
 
@@ -310,6 +310,8 @@ public class GameManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        currentLocation = locManager.GetCurrentLocation();
+
         if (paused == false)
         {
 			currentLocation=locManager.GetCurrentLocation();

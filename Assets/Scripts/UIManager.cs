@@ -32,7 +32,9 @@ public class UIManager : MonoBehaviour {
     public GameObject recipeMenu;
 
     public Text[] LocationNameTexts;
+    public Text[] RentPriceTexts;
     public Text[] WeatherDisplayTexts;
+
 
     public Slider cocoaAmtSlider;
     public Slider sugarAmtSlider;
@@ -67,7 +69,7 @@ public class UIManager : MonoBehaviour {
 
 
     //Location Selecter
-    private Button selectedLocation;
+
 
     //bools
     bool recipeMenuOpened = true;
@@ -148,6 +150,16 @@ public class UIManager : MonoBehaviour {
                 }
                 {
                     
+                }
+            }
+            if (RentPriceTexts.Length > 0)
+            {
+                foreach (Text displayText in RentPriceTexts)
+                {
+                    displayText.text = gameManager.currentLocation.rent.ToString("C2")+" / day";
+                }
+                {
+
                 }
             }
             if (WeatherDisplayTexts.Length > 0)

@@ -13,6 +13,10 @@ public class Location : MonoBehaviour
 
     private GameObject graphics;
 
+    private GameObject waypoints;
+
+    private GameObject stand;
+
 	
 
 
@@ -21,6 +25,8 @@ public class Location : MonoBehaviour
 	void Awake ()
 	{
 		graphics = transform.FindChild("Graphics").gameObject;
+        waypoints = transform.FindChild("Waypoints").gameObject;
+        stand = transform.FindChild("Stand").gameObject;
 
         DeactivateLocation();
 
@@ -30,13 +36,16 @@ public class Location : MonoBehaviour
     {
 
         graphics.SetActive(true);
-
+        waypoints.SetActive(true);
+        stand.SetActive(true);
 
     }
 
     public void DeactivateLocation()
     {
         graphics.SetActive(false);
+        waypoints.SetActive(false);
+        stand.SetActive(false);
 
     }
 	
