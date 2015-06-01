@@ -108,17 +108,12 @@ public class GameManager : MonoBehaviour {
             hour += 1;
             minute = 0;
             //check if you can still sell stuff
-            if (!canMakeMilk())
-            {
-                EndDay();
-                
-            }
+
         }
     }
 
     public string GetTime()
     {
-		//TODO Fix time display
         if (hour > 12)
         {
             if (minute < 10)
@@ -314,6 +309,11 @@ public class GameManager : MonoBehaviour {
 
         if (paused == false)
         {
+            if (!canMakeMilk())
+            {
+                EndDay();
+
+            }
 			currentLocation=locManager.GetCurrentLocation();
             
             tickTimer+= Time.deltaTime*timeMult;
