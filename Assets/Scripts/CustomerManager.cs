@@ -56,7 +56,7 @@ public class CustomerManager : MonoBehaviour {
 	        timer += Time.deltaTime;
 	    }
 
-        if (timer >= (waitTime - (gameManager.popularity / 100)))
+        if (timer >= (waitTime - gameManager.currentLocation.spawnRate))
         {
             if (readyToDeploy.Count > 0)
             {

@@ -5,6 +5,7 @@ public class Location : MonoBehaviour
 {
     public string name;
     public float rent;
+    public float spawnRate;
     public enum Climate { cold,cool,warm,hot}
 
     public Climate climateTemps;
