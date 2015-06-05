@@ -57,6 +57,10 @@ public class UIManager : MonoBehaviour {
     public Text priceDisplay;
 
 
+    //Finances
+    public Text cupsSold;
+    public Text moneyEarned;
+
 
 	private GameManager gameManager;
     private WeatherManager weather;
@@ -166,7 +170,7 @@ public class UIManager : MonoBehaviour {
             {
                 foreach (Text displayText in WeatherDisplayTexts)
                 {
-                    displayText.text = gameManager.weather.GetCondition()+", "+gameManager.weather.GetTemperature().ToString();
+                    displayText.text = gameManager.currentLocation.GetCondition().ToString()+", "+gameManager.currentLocation.GetTemperature().ToString();
                 }
                 {
 

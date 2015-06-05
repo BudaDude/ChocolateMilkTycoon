@@ -18,6 +18,12 @@ public class Location : MonoBehaviour
 
     private GameObject stand;
 
+    private int temperature;
+
+    private string condition;
+
+    private WeatherManager wm;
+
 	
 
 
@@ -28,17 +34,40 @@ public class Location : MonoBehaviour
 		graphics = transform.FindChild("Graphics").gameObject;
         waypoints = transform.FindChild("Waypoints").gameObject;
         stand = transform.FindChild("Stand").gameObject;
-
+        wm = GameObject.FindObjectOfType<WeatherManager>();
+        NewDay();
         DeactivateLocation();
 
 	}
 
+    void Start()
+    {
+
+    }
+
+    public void NewDay()
+    {
+        wm.GenerateWeather(climateTemps.ToString());
+        temperature = wm.GetTemperature();
+        condition = wm.GetCondition();
+    }
+
+    public int GetTemperature()
+    {
+        return temperature;
+    }
+
+    public string GetCondition()
+    {
+        return condition.ToString();
+    }
     public void ActivateLocation()
     {
 
         graphics.SetActive(true);
         waypoints.SetActive(true);
         stand.SetActive(true);
+        
 
     }
 

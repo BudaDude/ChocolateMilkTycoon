@@ -24,7 +24,6 @@ public class LocationManager : MonoBehaviour
             {
                 loco.ActivateLocation();
                 currentLocation = loco;
-                weatherManager.GenerateWeather(loco.climateTemps.ToString());
                 Debug.Log(currentLocation.name +"-"+weatherManager.GetCondition());
             }
             else
@@ -32,6 +31,14 @@ public class LocationManager : MonoBehaviour
                 loco.DeactivateLocation();
             }
         }   
+    }
+
+    public void BeginDay()
+    {
+        foreach (Location loco in locations)
+        {
+            loco.NewDay();
+        }
     }
 
 	public Location GetCurrentLocation(){

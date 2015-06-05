@@ -84,24 +84,24 @@ public class CustomerScript : MonoBehaviour
             }
             else
             {
-                if (gameManager.weather.GetCondition() == "Rain")
+                if (gameManager.currentLocation.GetCondition() == "Rain")
                 {
                     MakePeep("Rain");
                 }
-                else if (gameManager.weather.GetCondition() == "Snow")
+                else if (gameManager.currentLocation.GetCondition() == "Snow")
                 {
                     MakePeep("Snow");
 
                 }
-                else if (gameManager.weather.GetCondition() == "Clear" && gameManager.weather.GetTemperature() > 60)
+                else if (gameManager.currentLocation.GetCondition() == "Clear" && gameManager.currentLocation.GetTemperature() > 60)
                 {
                     MakePeep("Nice Day");
                 }
-                else if (gameManager.weather.GetTemperature() > 90)
+                else if (gameManager.currentLocation.GetTemperature() > 90)
                 {
                     MakePeep("Hot");
                 }
-                else if (gameManager.weather.GetTemperature() < 40)
+                else if (gameManager.currentLocation.GetTemperature() < 40)
                     MakePeep("Cold");
             }
         }
@@ -198,8 +198,8 @@ public class CustomerScript : MonoBehaviour
 
     void SetPrefences()
     {
-        int temp = gameManager.temperature;
-        string overcast = gameManager.weather.GetCondition();
+        int temp = gameManager.currentLocation.GetTemperature();
+        string overcast = gameManager.currentLocation.GetCondition();
 
         switch (overcast)
         {

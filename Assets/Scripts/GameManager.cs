@@ -248,20 +248,10 @@ public class GameManager : MonoBehaviour {
 		moneySpent = 0;
 		sales = 0;
 		uiManager.OpenCloseRecipeMenu();
-        ChangeTemp();
-
+        locManager.BeginDay();
 	}
 
-    public string GetTemp(){
-        if (settings.celsius == true)
-        {
-            return ((temperature - 32) * 5 / 9).ToString() + " °C";
-        }
-        else
-        {
-            return temperature.ToString() + " °F";
-        }
-    }
+
 
     public bool canMakeMilk()
     {
@@ -278,13 +268,6 @@ public class GameManager : MonoBehaviour {
     public int getChocoMilk()
     {
         return Mathf.Min(milkInventory, Mathf.Min(Mathf.FloorToInt(cocoaInventory/cocoaAmt),Mathf.FloorToInt(sugarInventory/sugarAmt)));
-    }
-    void ChangeTemp()
-    {
-
-            temperature += Random.Range(-10, 10);
-            temperature = Mathf.Clamp(temperature, 10, 90);
-
     }
 
     public void CustomerBuy()
