@@ -8,14 +8,20 @@ public class GameManager : MonoBehaviour {
 
 
 
-    private int sales;
+
 
 
 	//stats stuff
-    private float moneyEarned;
-	private float moneySpent;
-
+    public int sales;
+    public float moneyEarned;
+	public float moneySpent;
     public int inventory;
+    public List<float> salesPriceHistory;
+    public float otherIncome;
+    public float sugarExpense;
+    public float cocoaExpense;
+    public float milkExpense;
+
 
     public int popularity;
 
@@ -65,12 +71,11 @@ public class GameManager : MonoBehaviour {
     public WeatherManager weather;
     public int temperature;
 
-
-
-    //Singleton crap
-
-	private UIManager uiManager;
+    private UIManager uiManager;
     private Settings settings;
+    //report view
+    private GameObject reportViewObject;
+    //Singleton crap
 
 	private CustomerManager cusManager;
 	//Current Location
@@ -96,6 +101,7 @@ public class GameManager : MonoBehaviour {
 		locManager.SetLocation ("Park");
         currentLocation = locManager.GetCurrentLocation();
 		cusManager.ActivateCustomers ();
+        reportViewObject = GameObject.FindObjectOfType<ReportView>().gameObject;
 	}
 
 
@@ -154,6 +160,7 @@ public class GameManager : MonoBehaviour {
         {
             milkInventory += 10;
             money -= milkPrice;
+            milkExpense += milkPrice;
 			moneySpent+=milkPrice;
 
         }
@@ -164,6 +171,7 @@ public class GameManager : MonoBehaviour {
         {
             sugarInventory += 50;
             money -= sugarPrice;
+            sugarExpense += sugarPrice;
 			moneySpent+=sugarPrice;
         }
     }
@@ -173,6 +181,7 @@ public class GameManager : MonoBehaviour {
         {
             cocoaInventory += 50;
             money -= cocoaPrice;
+            cocoaExpense += cocoaPrice;
 			moneySpent+=cocoaPrice;
         }
     }
@@ -203,12 +212,6 @@ public class GameManager : MonoBehaviour {
     {
         
 
-        string additionalMsg = "";
-        if (!canMakeMilk())
-        {
-            additionalMsg = "You ran out of some supplies";
-        }
-
 		//Milk goes bad and must be thrown out unless you have fridge
 		if (milkGoesBad) {
             if (milkInventory > maxMilkSaved)
@@ -221,15 +224,13 @@ public class GameManager : MonoBehaviour {
         {
             milkInventory += 10;
         }
-        
 
 
 
-        uiManager.OpenMessageBox("End of Day " + day, "Money Earned: \t\t" + moneyEarned.ToString("C2")+
-		                                  "\n\nMoney Spent: \t\t"+moneySpent.ToString("C2")+
-		                                  "\n\nTotal Earned: \t\t"+(moneyEarned-moneySpent).ToString("C2")+
-                                          "\n\n"+additionalMsg
-		                                  ,PrepareForDay);
+
+        reportViewObject.transform.FindChild("Graphics").gameObject.SetActive(true);
+        paused = true;
+        uiManager.OpenCloseRecipeMenu();
 
 		//Resets positions of all customers
 		foreach (CustomerScript customer in (CustomerScript[])GameObject.FindObjectsOfType<CustomerScript>()) {
@@ -238,7 +239,7 @@ public class GameManager : MonoBehaviour {
         
 
     }
-	void PrepareForDay(){
+	public void PrepareForDay(){
 		hour = startingHour;
 		minute = 0;
 		day += 1;
@@ -247,7 +248,11 @@ public class GameManager : MonoBehaviour {
 		moneyEarned = 0;
 		moneySpent = 0;
 		sales = 0;
-		uiManager.OpenCloseRecipeMenu();
+        salesPriceHistory.Clear();
+        milkExpense = 0;
+        sugarExpense = 0;
+        cocoaExpense = 0;
+		
         locManager.BeginDay();
 	}
 
@@ -277,7 +282,9 @@ public class GameManager : MonoBehaviour {
         cocoaInventory -= cocoaAmt;
         sugarInventory -= sugarAmt;
         milkInventory -= 1;
+        salesPriceHistory.Add(salePrice);
         sales += 1;
+        
 
     }
     public void PauseGame()
