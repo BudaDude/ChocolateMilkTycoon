@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class LocationSelecter : MonoBehaviour {
     private LocationManager locoMan;
     public GameObject locationSlot;
+    private List<Location> locations;
+
 
     bool loadedLocations=false;
 
 	// Use this for initialization
 	void Start () {
         locoMan = GameObject.FindObjectOfType<LocationManager>().GetComponent<LocationManager>();
-
+  
 
 	}
 
@@ -52,7 +56,10 @@ public class LocationSelecter : MonoBehaviour {
     void LateUpdate()
     {
         if (loadedLocations==false){
-            foreach (Location location in locoMan.GetLocations())
+            locations = locoMan.GetLocations().ToList();
+            locations = locations.OrderBy(o => o.rent).Reverse().ToList();
+            Debug.Log(locations);
+            foreach (Location location in locations)
             {
                 Debug.Log(locoMan.GetCurrentLocation().name);
                 AddLocationSlot(location);

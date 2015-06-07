@@ -40,7 +40,7 @@ public class WeatherManager : MonoBehaviour
                 temperature = Random.Range(50, 80);
                 break;
             case "hot":
-                temperature = Random.Range(80, 110);
+                temperature = Random.Range(80, 120);
                 break;
 
 

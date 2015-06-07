@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" name="dessert" tilewidth="16" tileheight="16">
+  <image source="../../Art/Tilemaps/dessert.png" width="128" height="128"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJylk8sKAzEIRU27uHYV//9rm4LCiWTowCwuGt9GdTOLxFjwhbmgfBev1EXSAUxATaeUj4NPUU+o+VSu7h+wEfhe1xVmi8P+7vizp9dDfB7i/RCc6d3+T39Zcf7ZB+ZG3+I5S4L7INv3MGzvwZGHvrRRk3OHWZPbfh/cnapXtt9NXMQV9MP2nYtDngmb/kdlq0b7jfKuvMl/9AsNMwdC
+  </data>
+ </layer>
+</map>
